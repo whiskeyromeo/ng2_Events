@@ -1,0 +1,31 @@
+<div class="container">
+	<div [hidden]="submitted">
+		<h1>Login</h1>
+		<form *ngIf="active" (ngSubmit)="doLogin()" #signupForm="ngForm">
+			<div class="form-group">
+				<label for="email">Email</label>
+				<input type="email" required ngControl="email" class="form-control" placeholder="Your Email" [(ngModel)]="model.email" #email="ngForm">
+				<div [hidden]="email.pristine || email.valid" class="alert alert-danger">Email Required</div>
+			</div>
+			<div class="form-group">
+				<label for="password">Password</label>
+				<input type="password" required ngControl="password" class="form-control" placeholder="Your Password" [(ngModel)]="model.password" #passwd="ngForm">
+				<div [hidden]="passwd.pristine || passwd.valid" class="alert alert-danger">Password Required</div>
+			</div>
+			<button type="submit" [disabled]="!signupForm.form.valid" class="btn btn-default">Login</button>
+		</form>
+	</div>
+	<div [hidden]="!submitted">
+		<h2>You submitted the following:</h2>
+	    <div class="row">
+	      <div class="col-xs-3">Email</div>
+	      <div class="col-xs-9 pull-left">{{ model.email }}</div>
+	    </div>
+	    <div class="row">
+	      <div class="col-xs-3">Password</div>
+	      <div class="col-xs-9 pull-left">{{ model.password }}</div>
+	    </div>
+	    <br>
+	    <button class="btn btn-default" (click)="submitted=false">Edit</button>
+	</div>
+</div>

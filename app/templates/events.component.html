@@ -1,0 +1,76 @@
+<div class="container container-fluid">
+	<h2>Add Event</h2>
+	<hr>
+	<form [ngFormModel]="eventForm" (submit)="addEvent()">
+		<div class="form-group row">
+			<label for="enterEvent" class="col-sm-2 form-control-label">Event Title</label>
+			<div class="col-sm-10">
+				<input id="enterEvent" type="text" class="form-control" placeholder="Add Event" [ngFormControl]="eventForm.controls['newEvent']">
+				<control-messages control="newEvent" type="Event Title"></control-messages>
+			</div>
+		</div>
+		<div class="form-group row">
+			<label for="" class="col-sm-2 form-control-label">Event Type</label>
+			<div class="col-sm-10">
+				<select class="form-control" [ngFormControl]="eventForm.controls['eType']" >
+					<option *ngFor="let event of eventTypes">{{event}}</option>
+				</select>
+				<control-messages control="eType" type="Event Type"></control-messages>
+			</div>
+		</div>
+		<div class="form-group row">
+			<label for="eventDescribe" class="col-sm-2 form-control-label">Event Description</label>
+			<div class="col-sm-10">
+				<textarea id="eventDescribe" type="text" class="form-control" rows="3" [ngFormControl]="eventForm.controls['eDesc']" ></textarea>
+				<control-messages control="eDesc" type="Event Description"></control-messages>
+			</div>
+		</div>
+		<div class="form-group row">
+			<label for="startDate" class="col-sm-2 form-control-label">Start Date</label>
+			<div class="col-sm-4">
+				<input class="date" type="date" min="{{getDate()}}" [ngFormControl]="eventForm.controls['startDate']" >
+				<control-messages control="startDate" type="Start Date"></control-messages>
+			</div>
+			<label for="endDate" class="col-sm-2 form-control-label">End Date</label>
+			<div class="col-sm-4">
+				<input class="date" type="date" [ngFormControl]="eventForm.controls['endDate']">
+				<control-messages control="endDate" type="End Date"></control-messages>
+			</div>
+		</div>
+		<div class="form-group row">
+			<label for="eventTime" class="col-sm-2 form-control-label">Start Time</label>
+			<div class="col-sm-4">
+				<timepicker [(ngModel)]="startTime" [hourStep]="hstep" [minuteStep]="mstep" [showMeridian]="ismeridian"></timepicker>
+			</div>
+			<label class="col-sm-4 form-control-label" for="endTime">Does this event have an end time?</label>
+			<div class="col-sm-1">
+				<input type="checkbox" id="endTimePresent" (change)="checked('endTimePresent')">
+			</div>
+		</div>
+		<div class="form-group row" *ngIf="shown">
+			<label for="eventTime" class="col-sm-2 form-control-label">End Time</label>
+			<div class="col-sm-4">
+				<my-timepicker></my-timepicker>
+			</div>
+		</div>
+		
+		<div class="form-group row">
+			<label for="guests" class="col-sm-2 form-control-label">Guests</label>
+			<div class="col-sm-10">	
+				<textarea id="guests" rows="3" class="form-control"></textarea>
+			</div>
+		</div>
+		<button class="btn btn-primary" [disabled]="!eventForm.valid">Submit</button>
+	</form>
+
+	<section class="main" *ngIf="eventStore.events.length > 0">
+		<ul>
+			<li *ngFor="let event of eventStore.events">
+				<div class="view">
+					<label>{{event._title}}</label>
+					<button class="btn btn-default" (click)="removeEvent(event)">X</button>
+				</div>
+			</li>
+		</ul>
+	</section>
+</div>

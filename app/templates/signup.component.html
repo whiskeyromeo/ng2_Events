@@ -1,0 +1,46 @@
+<div class="container">
+	<div [hidden]="submitted">
+		<h1>Signup</h1>
+		<form *ngIf="active" (ngSubmit)="doSignup()" #signupForm="ngForm">
+			<div class="form-group">
+				<label for="name">Name</label>
+				<input type="text" required autofocus ngControl="name" class="form-control" placeholder="Your Name" [(ngModel)]="model.name" #name="ngForm">
+				<div [hidden]="name.pristine || name.valid" class="alert alert-danger">Name Required</div>
+			</div>
+			<div class="form-group">
+				<label for="email">Email</label>
+				<input type="email" required ngControl="email" class="form-control" placeholder="Your Email" [(ngModel)]="model.email" #email="ngForm">
+				<div [hidden]="email.pristine || email.valid" class="alert alert-danger">Email Required</div>
+			</div>
+			<div class="form-group">
+				<label for="password">Password</label>
+				<input type="password" required ngControl="password" class="form-control" placeholder="Your Password" [(ngModel)]="model.password" #passwd="ngForm">
+				<div [hidden]="passwd.pristine || passwd.valid" class="alert alert-danger">Password Required</div>
+			</div>
+			<div class="form-group">
+				<label for="passwordConf">Confirm Password</label>
+				<input type="password" required ngControl="passwordConf" class="form-control" placeholder="Confirm Password" #passwdConf="ngForm">
+				<div [hidden]="passwdConf.pristine || passwdConf.valid" class="alert alert-danger">Must Confirm Password</div>
+			</div>
+			<button type="submit" [disabled]="!signupForm.form.valid" class="btn btn-default">Signup</button>
+		</form>
+	</div>
+	<div [hidden]="!submitted">
+		<h2>You submitted the following:</h2>
+		<div class="row">
+		      <div class="col-xs-3">Name</div>
+		      <div class="col-xs-9  pull-left">{{ model.name }}</div>
+	    </div>
+	    <div class="row">
+	      <div class="col-xs-3">Email</div>
+	      <div class="col-xs-9 pull-left">{{ model.email }}</div>
+	    </div>
+	    <div class="row">
+	      <div class="col-xs-3">Password</div>
+	      <div class="col-xs-9 pull-left">{{ model.password }}</div>
+	    </div>
+	    <br>
+	    <button class="btn btn-default" (click)="submitted=false">Edit</button>
+	    <button type="button" class="btn btn-default" (click)="newUser()">New Hero</button>
+	</div>
+</div>
