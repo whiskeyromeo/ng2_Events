@@ -12,10 +12,16 @@
     </div>
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav navbar-right">
+      <ul class="nav navbar-nav navbar-right" *ngIf="isLoggedIn()">
+        <li><a [routerLink]="['Home']">Home</a></li>
+        <li><a [routerLink]="['Dashboard']">Dashboard</a></li>
+        <li><a [routerLink]="['Todo']">Events</a></li>
+        <li><a (click)="logout()">Logout</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right" *ngIf="!isLoggedIn()">
+        <li><a [routerLink]="['Home']">Home</a></li>
         <li><a [routerLink]="['Signup']">Signup</a></li>
         <li><a [routerLink]="['Login']">Login</a></li>
-        <li><a [routerLink]="['Todo']">TODO</a></li>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->

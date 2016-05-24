@@ -1,46 +1,72 @@
 <div class="container">
 	<div [hidden]="submitted">
 		<h1>Signup</h1>
-		<form *ngIf="active" (ngSubmit)="doSignup()" #signupForm="ngForm">
+		<form (ngSubmit)="signup()" [ngFormModel]="signupForm">
 			<div class="form-group">
 				<label for="name">Name</label>
-				<input type="text" required autofocus ngControl="name" class="form-control" placeholder="Your Name" [(ngModel)]="model.name" #name="ngForm">
-				<div [hidden]="name.pristine || name.valid" class="alert alert-danger">Name Required</div>
+				<input type="text" required #name autofocus ngControl="name" class="form-control" placeholder="Your Name">
+				<control-messages control="name" type="Name"></control-messages>
 			</div>
 			<div class="form-group">
 				<label for="email">Email</label>
-				<input type="email" required ngControl="email" class="form-control" placeholder="Your Email" [(ngModel)]="model.email" #email="ngForm">
-				<div [hidden]="email.pristine || email.valid" class="alert alert-danger">Email Required</div>
+				<input type="email" required ngControl="email" class="form-control" placeholder="Your Email">
+				<control-messages control="email" type="Email"></control-messages>
 			</div>
 			<div class="form-group">
 				<label for="password">Password</label>
-				<input type="password" required ngControl="password" class="form-control" placeholder="Your Password" [(ngModel)]="model.password" #passwd="ngForm">
-				<div [hidden]="passwd.pristine || passwd.valid" class="alert alert-danger">Password Required</div>
+				<input type="password" required ngControl="password" class="form-control" placeholder="Your Password">
+				<control-messages control="password" type="Password"></control-messages>
 			</div>
 			<div class="form-group">
 				<label for="passwordConf">Confirm Password</label>
-				<input type="password" required ngControl="passwordConf" class="form-control" placeholder="Confirm Password" #passwdConf="ngForm">
-				<div [hidden]="passwdConf.pristine || passwdConf.valid" class="alert alert-danger">Must Confirm Password</div>
+				<input type="password" required ngControl="passwordConf" class="form-control" placeholder="Confirm Password">
+				<control-messages control="passwordConf" type="Password Confirmation"></control-messages>
 			</div>
-			<button type="submit" [disabled]="!signupForm.form.valid" class="btn btn-default">Signup</button>
+			<div class="form-group">
+				<label for="optional">May we serve you better?</label>
+				<input type="checkbox" id="optional" (change)="checked('optional')">
+			</div>
+			<div *ngIf="shown">
+				<div class="form-group">
+					<label for="occupation">Occupation</label>
+					<input type="text" ngControl="occupation" class="form-control" placeholder="Enter Occupation" >
+					<control-messages control="occupation" type="Occupation"></control-messages>
+				</div>
+				<div class="form-group">
+					<label for="city">City</label>
+					<input type="text" ngControl="city" class="form-control" placeholder="Enter City" >
+					<control-messages control="city" type="City"></control-messages>
+				</div>
+				<div class="form-group">
+					<label for="state">State</label>
+					<input type="text" ngControl="state" class="form-control" placeholder="Enter State" >
+					<control-messages control="state" type="State"></control-messages>
+				</div>
+				<div class="form-group">
+					<label for="state">Zip</label>
+					<input type="text" ngControl="zip" class="form-control" placeholder="Enter Zip" >
+					<control-messages control="zip" type="Zip Code"></control-messages>
+				</div>
+			</div>
+			<button type="submit" [disabled]="!signupForm.valid" class="btn btn-default">Signup</button>
 		</form>
 	</div>
 	<div [hidden]="!submitted">
-		<h2>You submitted the following:</h2>
-		<div class="row">
-		      <div class="col-xs-3">Name</div>
-		      <div class="col-xs-9  pull-left">{{ model.name }}</div>
-	    </div>
-	    <div class="row">
-	      <div class="col-xs-3">Email</div>
-	      <div class="col-xs-9 pull-left">{{ model.email }}</div>
-	    </div>
-	    <div class="row">
-	      <div class="col-xs-3">Password</div>
-	      <div class="col-xs-9 pull-left">{{ model.password }}</div>
-	    </div>
 	    <br>
 	    <button class="btn btn-default" (click)="submitted=false">Edit</button>
-	    <button type="button" class="btn btn-default" (click)="newUser()">New Hero</button>
+	</div>
+	<div *ngIf="userStore.users.length > 0">
+		<div *ngFor="let user of userStore.users">
+			<h2>Name : {{user.name}}</h2>
+			<p>id: {{user.id}}</p>
+			<p>email: {{user.email}}</p>
+			<p>password: {{user.password}}</p>
+			<p *ngIf="user.occupation">occupation: {{user.occupation}}</p>
+			<p *ngIf="user.city">city: {{user.city}}</p>
+			<p *ngIf="user.state">state: {{user.state}}</p>
+			<p *ngIf="user.zip">zip : {{user.zip}}</p>
+			<button (click)="userStore.removeUser(user)">Remove {{user.name}}</button>
+		</div>
+		
 	</div>
 </div>

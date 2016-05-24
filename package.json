@@ -30,6 +30,7 @@
     "@angular/router-deprecated": "2.0.0-rc.1",
     "@angular/upgrade": "2.0.0-rc.1",
     "angular2-in-memory-web-api": "0.0.7",
+    "angular2-jwt": "^0.1.15",
     "bootstrap": "^3.3.6",
     "es6-shim": "^0.35.0",
     "jquery": "^2.2.3",
@@ -42,15 +43,21 @@
     "zone.js": "^0.6.12"
   },
   "devDependencies": {
-    "concurrently": "^2.0.0",
-    "lite-server": "^2.2.0",
-    "typescript": "^1.8.10",
-    "typings": "^0.8.1",
     "canonical-path": "0.0.2",
+    "concurrently": "^2.0.0",
+    "del": "^2.2.0",
+    "gulp": "^3.9.1",
+    "gulp-html-replace": "^1.5.5",
+    "gulp-inject": "^4.1.0",
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-typescript": "^2.13.4",
     "http-server": "^0.9.0",
-    "tslint": "^3.7.4",
+    "lite-server": "^2.2.0",
     "lodash": "^4.11.1",
-    "rimraf": "^2.5.2"
+    "rimraf": "^2.5.2",
+    "tslint": "^3.7.4",
+    "typescript": "^1.8.10",
+    "typings": "^0.8.1"
   },
   "repository": {}
 }

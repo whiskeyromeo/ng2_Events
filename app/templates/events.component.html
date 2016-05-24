@@ -5,7 +5,7 @@
 		<div class="form-group row">
 			<label for="enterEvent" class="col-sm-2 form-control-label">Event Title</label>
 			<div class="col-sm-10">
-				<input id="enterEvent" type="text" class="form-control" placeholder="Add Event" [ngFormControl]="eventForm.controls['newEvent']">
+				<input id="enterEvent" #title type="text" class="form-control" placeholder="Add Event" [ngFormControl]="eventForm.controls['newEvent']">
 				<control-messages control="newEvent" type="Event Title"></control-messages>
 			</div>
 		</div>
@@ -33,7 +33,7 @@
 			</div>
 			<label for="endDate" class="col-sm-2 form-control-label">End Date</label>
 			<div class="col-sm-4">
-				<input class="date" type="date" [ngFormControl]="eventForm.controls['endDate']">
+				<input class="date" type="date" [(ngModel)]="endDate" [ngFormControl]="eventForm.controls['endDate']" min="{{startDate}}">
 				<control-messages control="endDate" type="End Date"></control-messages>
 			</div>
 		</div>
@@ -42,35 +42,48 @@
 			<div class="col-sm-4">
 				<timepicker [(ngModel)]="startTime" [hourStep]="hstep" [minuteStep]="mstep" [showMeridian]="ismeridian"></timepicker>
 			</div>
-			<label class="col-sm-4 form-control-label" for="endTime">Does this event have an end time?</label>
+			<label class="col-sm-4 form-control-label" for="endTimePresent">Does this event have an end time?</label>
 			<div class="col-sm-1">
 				<input type="checkbox" id="endTimePresent" (change)="checked('endTimePresent')">
 			</div>
 		</div>
 		<div class="form-group row" *ngIf="shown">
-			<label for="eventTime" class="col-sm-2 form-control-label">End Time</label>
+			<label for="endTime" class="col-sm-2 form-control-label">End Time</label>
 			<div class="col-sm-4">
-				<my-timepicker></my-timepicker>
+				<timepicker [(ngModel)]="endTime" [hourStep]="hstep" [minuteStep]="mstep" [showMeridian]="ismeridian"></timepicker>
 			</div>
 		</div>
-		
+		<div class="form-group row">
+			<label for="host" class="col-sm-2 form-control-label">Host</label>
+			<div class="col-sm-10">
+				<input type="text" id="host" [ngFormControl]="eventForm.controls['host']" class="form-control">
+				<control-messages control="host" type="Host"></control-messages>
+			</div>
+		</div>
 		<div class="form-group row">
 			<label for="guests" class="col-sm-2 form-control-label">Guests</label>
 			<div class="col-sm-10">	
-				<textarea id="guests" rows="3" class="form-control"></textarea>
+				<textarea id="guests" [ngFormControl]="eventForm.controls['guests']" rows="3" class="form-control"></textarea>
 			</div>
 		</div>
 		<button class="btn btn-primary" [disabled]="!eventForm.valid">Submit</button>
 	</form>
-
-	<section class="main" *ngIf="eventStore.events.length > 0">
-		<ul>
-			<li *ngFor="let event of eventStore.events">
-				<div class="view">
-					<label>{{event._title}}</label>
-					<button class="btn btn-default" (click)="removeEvent(event)">X</button>
+	<div>
+		<section class="main" *ngIf="eventStore.events">
+			<div class="card-group" *ngFor="let event of eventStore.events">
+				<div class="card">
+				Creator Id: {{event.creatorId}}, currentUSer.id : {{currentUser.id}}
+					<div class="" style="border: 1px solid black">
+						<h2 class="card-title">{{event.title}}</h2>
+						<p class="card-text">{{event.type}}</p>
+						<p>{{event.description}}</p>
+						<p>{{ formatDate(event.startDate) | date:'medium'}} - {{formatDate(event.endDate) | date }}</p>
+						<p *ngIf="event.host">Hosted by {{event.host}}</p>
+						<p *ngIf="event.guests">Guests Invited: {{event.guests}}</p>
+						<button class="btn btn-warning" (click)="removeEvent(event)">Delete Event</button>
+					</div>
 				</div>
-			</li>
-		</ul>
-	</section>
+			</div>
+		</section>
+	</div>
 </div>

@@ -2,7 +2,6 @@ import { Component, Host } from '@angular/core';
 import { NgFormModel } from '@angular/common';
 import { ValidationService } from './services/validation.service';
 
-
 @Component({
 	selector: 'control-messages',
 	inputs: ['controlName: control', 'typeName: type'],

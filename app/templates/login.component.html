@@ -1,30 +1,24 @@
 <div class="container">
-	<div [hidden]="submitted">
+	<div class="jumbotron center-block" [hidden]="submitted">
+		<span>{{errorMsg}}</span>
 		<h1>Login</h1>
-		<form *ngIf="active" (ngSubmit)="doLogin()" #signupForm="ngForm">
+		<form [ngFormModel]="loginForm" (submit)="login()">
 			<div class="form-group">
 				<label for="email">Email</label>
-				<input type="email" required ngControl="email" class="form-control" placeholder="Your Email" [(ngModel)]="model.email" #email="ngForm">
-				<div [hidden]="email.pristine || email.valid" class="alert alert-danger">Email Required</div>
+				<input type="email" #email ngControl="email" required class="form-control" placeholder="Your Email" autofocus autocomplete>
+				<control-messages control="email" type="Email"></control-messages>
 			</div>
 			<div class="form-group">
 				<label for="password">Password</label>
-				<input type="password" required ngControl="password" class="form-control" placeholder="Your Password" [(ngModel)]="model.password" #passwd="ngForm">
-				<div [hidden]="passwd.pristine || passwd.valid" class="alert alert-danger">Password Required</div>
+				<input type="password" ngControl="password" required class="form-control" placeholder="Your Password" autocomplete>
+				<control-messages control="password" type="Password"></control-messages>
 			</div>
-			<button type="submit" [disabled]="!signupForm.form.valid" class="btn btn-default">Login</button>
+			<button type="submit" [disabled]="!loginForm.valid"class="btn btn-default">Login</button>
 		</form>
+		<a href="/signup">Click here to signup</a>
 	</div>
 	<div [hidden]="!submitted">
-		<h2>You submitted the following:</h2>
-	    <div class="row">
-	      <div class="col-xs-3">Email</div>
-	      <div class="col-xs-9 pull-left">{{ model.email }}</div>
-	    </div>
-	    <div class="row">
-	      <div class="col-xs-3">Password</div>
-	      <div class="col-xs-9 pull-left">{{ model.password }}</div>
-	    </div>
+		<h2>You are being logged in...</h2>
 	    <br>
 	    <button class="btn btn-default" (click)="submitted=false">Edit</button>
 	</div>

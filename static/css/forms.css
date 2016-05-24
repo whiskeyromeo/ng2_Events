@@ -9,3 +9,8 @@
 }
 
 .date::-webkit-inner-spin-button { display: none; }
+
+
+li {
+	list-style-type: none;
+}

@@ -1,0 +1,34 @@
+<div class="container" >
+    <div class="content">
+        <span>Congratulations {{currentUser.name}}, you have successfully logged in!!</span>
+        <br />
+        <a (click)="logout()" href="#">Click Here to logout</a>
+    </div>
+
+    <h4>Recently Listed Events</h4>
+    <div class="table-responsive">
+	    <table class="table table-striped">
+	    	<thead>
+	    		<tr>
+	    			<th>Title</th>
+	    			<th>Description</th>
+	    			<th>Host</th>
+	    			<th>Type</th>
+	    			<th>Begins</th>
+	    			<th>User ID	</th>
+
+	    		</tr>
+	    	</thead>
+	    	<tbody *ngFor="let event of eventStore.events">
+	    		<tr>
+	    			<td>{{event.title}}</td>
+	    			<td>{{event.description}}</td>
+	    			<td>{{event.host}}</td>
+	    			<td>{{event.type}}</td>
+	    			<td>{{event.startDate}}</td>
+	    			<td>{{event.creatorId}}</td>
+	    		</tr>
+	    	</tbody>
+	    </table>	
+    </div>
+</div>
