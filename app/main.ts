@@ -10,4 +10,4 @@ bootstrap(AppComponent, [
 	FORM_PROVIDERS,
 	EventStore,
 	HTTP_PROVIDERS
-]);
+]).catch(err => console.log(err));

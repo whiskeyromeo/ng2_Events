@@ -10,7 +10,8 @@ h2, h3 {
   font-weight: lighter;
 }
 body { 
-  margin: 2em; 
+  margin: 0 auto !important;
+  background: #D1D8D5 !important; 
 }
 body, input[text], button { 
   color: #888; 
@@ -138,6 +139,10 @@ nav a.router-link-active {
 
 control-messages {
   color: red;
+}
+
+@media all and (max-width: 480px) {
+  .mobile-btn { width: 100%; display: block; }
 }
 
 

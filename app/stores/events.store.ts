@@ -38,6 +38,7 @@ export class Event {
 	}
 
 	constructor(id: number, title: string, type: string, description: string, startDate: string, endDate: string, creatorId: number, host?: string, guests?: string) {
+		this._id = id;
 		this._title = title;
 		this._type = type;
 		this._description = description;
@@ -56,6 +57,7 @@ export class EventStore {
 
 	constructor() {
 		let persistedEvents = JSON.parse(localStorage.getItem('ng2-events') || '[]');
+		
 		//Normalize back into classes
 		this.events = persistedEvents.map((event: {
 			_id: number,
@@ -75,7 +77,6 @@ export class EventStore {
 				event._description,
 				event._startDate,
 				event._endDate,
-				event._startTime,
 				event._creatorId,
 				event._host,
 				event._guests
@@ -88,7 +89,7 @@ export class EventStore {
 		localStorage.setItem('ng2-events', JSON.stringify(this.events));
 	}
 
-	addEvent(title: string, type: string, sDate: string, eDate: string, creatorId: number, desc?: string, guests?:string, host?: string) {
+	addEvent(title: string, type: string, sDate: string, eDate: string, creatorId: number, desc?: string, host?: string, guests?: string) {
 		let id = this.events.length + 1;
 		var event = new Event(id, title, type, desc, sDate, eDate, creatorId, host, guests);
 		this.events.push(event)

@@ -53,7 +53,7 @@
 	</div>
 	<div [hidden]="!submitted">
 	    <br>
-	    <button class="btn btn-default" (click)="submitted=false">Edit</button>
+	    <button class="btn btn-default mobile-btn" (click)="submitted=false">Edit</button>
 	</div>
 	<div *ngIf="userStore.users.length > 0">
 		<div *ngFor="let user of userStore.users">

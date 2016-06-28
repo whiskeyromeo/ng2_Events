@@ -5,11 +5,13 @@ import { LoginComponent } from './login.component';
 import { EventComponent } from './events.component';
 import { HomeComponent } from './home.component';
 import { DashboardComponent } from './dashboard.component';
+import { EventDetailComponent } from './event-detail.component';
 import { AuthService } from '../services/auth.service';
 
 @Component({
 	selector: 'my-app',
 	templateUrl: 'app/templates/app.component.html',
+	styleUrls: ['static/css/app.component.css'],
 	directives: [ROUTER_DIRECTIVES],
 	providers: [ROUTER_PROVIDERS, AuthService]
 })
@@ -40,6 +42,11 @@ import { AuthService } from '../services/auth.service';
 		path: '/dashboard',
 		name: 'Dashboard',
 		component: DashboardComponent
+	},
+	{
+		path: '/event/detail/:id',
+		name: 'EventDetail',
+		component: EventDetailComponent
 	}
 ])
 

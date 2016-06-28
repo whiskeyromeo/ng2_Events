@@ -1,0 +1,32 @@
+<div class="container" *ngIf="event">
+	<div class="content-header col-md-12">
+		<div class="col-md-8 col-sm-12 col-xs-12">
+			<h1><b>{{event.title}}</b></h1>
+			<h4><i>a {{event.type}} hosted by {{event.host}}</i></h4>
+		</div>
+		<div class="date col-md-4 col-sm-12 col-xs-12">
+			<h4><b>June 5, 2025 - June 8, 2025</b></h4>
+			<h4><b>12:00 AM - 12:05 PM</b></h4>
+		</div>
+	</div>
+	<div class="main-content col-md-12">	
+		<div class="event-img col-md-4 col-sm-12 col-xs-12 pull-right">
+			<img src="http://placehold.it/250x250" class="img-circle" alt="">
+		</div>
+		<div class="content col-md-8 col-sm-12 col-xs-12">
+			<fieldset class="detail">
+				<legend>Description</legend>
+				<p>{{event.description}}</p>
+			</fieldset>
+			<fieldset class="guests" *ngIf="event.guests">
+				<legend>Invited Guests</legend>
+				<p>{{event.guests}}</p>
+			</fieldset>
+			<fieldset class="address" *ngIf="event.guests">
+				<legend>Location</legend>
+				<p>123 Rockefeller St. Camden, New Jersey 12345</p>
+			</fieldset>
+		</div>
+	</div>
+
+</div>

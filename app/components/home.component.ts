@@ -6,6 +6,7 @@ import { Router } from '@angular/router-deprecated';
 @Component({
 	selector: 'Home',
 	templateUrl: 'app/templates/home.component.html',
+	styleUrls: ['static/css/home.component.css']
 })
 
 export class HomeComponent {

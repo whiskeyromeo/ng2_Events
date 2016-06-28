@@ -1,21 +1,23 @@
-import { Component, OnInit, ElementRef, ViewChild, Renderer } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild, Renderer, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, Validators, Control,  ControlGroup } from '@angular/common';
 import { EventStore, Event } from '../stores/events.store';
 import { ControlMessages } from '../control-messages';
 import { ValidationService } from '../services/validation.service';
 import { AuthService } from '../services/auth.service';
 import { TimepickerComponent } from 'ng2-bootstrap/ng2-bootstrap';
-import * as moment from 'moment';
+import { CustomTimepickerComponent } from './customTimepicker.component';
+
 
 @Component({
 	selector: 'event-form',
 	templateUrl: 'app/templates/events.component.html',
-	directives: [TimepickerComponent, ControlMessages]
+	styleUrls: ['static/css/event.component.css'],
+	directives: [TimepickerComponent, CustomTimepickerComponent, ControlMessages]
 })
 
 export class EventComponent { 
 	@ViewChild('title') input: ElementRef;
-
+	endTimeChange: EventEmitter
 	currentUser: User
 	formBuilder: FormBuilder;
 	eventStore: EventStore;
@@ -44,11 +46,8 @@ export class EventComponent {
 		this.formBuilder = formBuilder;
 		this.buildEventForm();
 		this.eventStore = store;
-	}
 
-	// ngOnInit() {
-	// 	this._service.checkCreds();
-	// }
+	}
 
 	ngAfterViewInit() {
 		this.renderer.invokeElementMethod(this.input.nativeElement, 'focus');
@@ -57,6 +56,7 @@ export class EventComponent {
 	buildEventForm(): void {
 
 		this.startTime = new Date();
+		this.endTime = new Date();
 
 		this.eventForm = this.formBuilder.group({
 			'newEvent': ['', Validators.required],
@@ -64,9 +64,11 @@ export class EventComponent {
 			'eDesc': [''],
 			'startDate': ['', Validators.required],
 			'endDate': [''],
+			'startTime': [this.startTime, Validators.compose([Validators.required])],
+			'endTime': [this.endTime],
 			'guests': [''],
 			'host': [this.currentUser.name, Validators.compose([ValidationService.checkString])]
-		})
+		});
 
 		//this.eventForm.valueChanges.subscribe(data => console.log('form changes', data));
 		let startDateField = this.eventForm.controls['startDate'];
@@ -76,9 +78,9 @@ export class EventComponent {
 			}
 		});
 
-		this.eventForm.valueChanges.subscribe(()=> {
-			
-		})
+		this.eventForm.valueChanges.subscribe(() => {
+
+		});
 	}
 
 	addEvent() {
@@ -106,16 +108,6 @@ export class EventComponent {
 		this.eventStore.removeEvent(event);
 	}
 
-	checked(id: string) {
-		var status = document.getElementById(id).checked
-		if(status==true){
-			this.shown = true;
-			console.log('checked');
-		} else {
-			this.shown = false;
-		}
-	}
-
 	checkEndDate() {
 		let sDate = this.eventForm.value.startDate;
 		let eDate = this.eventForm.value.endDate;
@@ -125,10 +117,25 @@ export class EventComponent {
 		}
 	}
 
+	checkStartTime(endValue) {
+		if(this.eventForm.value.startDate == this.eventForm.value.endDate) {
+			if(this.startTime > this.endTime) {
+				this.startTime = endValue;
+			}
+		}
+	}
+
+	checkEndTime(startValue) {
+		if(this.eventForm.value.startDate == this.eventForm.value.endDate) {
+			if(this.startTime > this.endTime) {
+				this.endTime = startValue;
+			}
+		}
+	}
+
 	prepareDate(date: string, time: Date = ''){
 		var newDate = new Date(date.replace(/-/g, '\/'));
 		if (time) {
-			console.log('in time');
 			var hours = time.getHours();
 			var mins = time.getMinutes();
 			newDate.setHours(hours, mins);

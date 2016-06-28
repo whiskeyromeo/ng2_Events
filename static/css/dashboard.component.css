@@ -1,0 +1,67 @@
+
+.card-holder {
+	padding: 3px;
+}
+
+.card {
+	border: 1px solid #3B728E;
+	background: white;
+	border-radius: 5px;
+	margin-bottom: 10px;
+	background: linear-gradient(#FFE6C3,white);
+}
+
+.card-header {
+	padding: 8px 5px 3px 5px;
+	min-height: 50px;
+	text-align: center;
+	clear: both;
+	background: rgba(192,177,170,0.3);
+}
+
+.card-title {
+	padding: 0px;
+	margin: 2px;
+	font-size: 23px;
+	font-weight: bold;
+}
+
+.card-options h4 {
+	margin: 0px;
+	padding: 3px;
+	height: 30px;
+	text-align: center;
+	display: block;
+	border-radius: 0px;
+}
+
+.card-content {
+	padding-left: 5px;
+	padding-bottom: 5px;
+	padding-top:3px;
+}
+
+.removeEvent {
+  width: 40px;
+  height: 40px;
+  padding: 8px 10px;
+  font-size: 20px;
+  line-height: 1.33;
+  border-radius: 25px;
+  margin: 5px;
+}
+
+.addEvent {
+  width: 50px;
+  height: 50px;
+  padding: 0px 10px;
+  font-size: 36px;
+  line-height: 1.33;
+  border-radius: 35px;
+  margin-top: 5px;
+}
+
+p.btn.link {
+	padding-left: 3px;
+	color: #3D7490;
+}
