@@ -16,4 +16,9 @@ export class EventService{
 			events => events.filter(event => event.id === id)[0]
 		);
 	}
+
+	getEvent2(id: number) {
+		return this.eventStore.events.filter(event => event.id === id)[0];
+	}
+
 }

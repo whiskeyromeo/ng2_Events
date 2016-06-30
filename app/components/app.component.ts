@@ -2,10 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS } from '@angular/router-deprecated';
 import { SignupComponent } from './signup.component';
 import { LoginComponent } from './login.component';
-import { EventComponent } from './events.component';
+import { AddEventComponent } from './event-add.component';
 import { HomeComponent } from './home.component';
 import { DashboardComponent } from './dashboard.component';
 import { EventDetailComponent } from './event-detail.component';
+import { EventEditComponent } from './event-edit.component';
 import { AuthService } from '../services/auth.service';
 
 @Component({
@@ -18,7 +19,7 @@ import { AuthService } from '../services/auth.service';
 
 @RouteConfig([
 	{
-		path: '/',
+		path: '/home',
 		name: 'Home',
 		component: HomeComponent,
 		useAsDefault: true
@@ -34,9 +35,9 @@ import { AuthService } from '../services/auth.service';
 		component: LoginComponent
 	},
 	{
-		path: '/events',
+		path: '/add-event',
 		name: 'Todo',
-		component: EventComponent
+		component: AddEventComponent
 	},
 	{
 		path: '/dashboard',
@@ -47,6 +48,11 @@ import { AuthService } from '../services/auth.service';
 		path: '/event/detail/:id',
 		name: 'EventDetail',
 		component: EventDetailComponent
+	},
+	{
+		path: '/event/edit/:id',
+		name: 'EventEdit',
+		component: EventEditComponent
 	}
 ])
 

@@ -19,8 +19,8 @@ export class AuthService {
 
 	login(user) {
 		var authUser = users.find(u => u.email === user.email);
-		console.log(authUser)
-		if(authUser) {
+		
+		if(authUser && authUser.password == user.password) {
 			localStorage.setItem("loggedInUser", JSON.stringify(authUser));
 			this._router.navigate(['Dashboard']);
 			return true;

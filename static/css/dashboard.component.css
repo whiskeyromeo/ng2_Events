@@ -9,6 +9,7 @@
 	border-radius: 5px;
 	margin-bottom: 10px;
 	background: linear-gradient(#FFE6C3,white);
+	height: 250px;
 }
 
 .card-header {
@@ -33,6 +34,7 @@
 	text-align: center;
 	display: block;
 	border-radius: 0px;
+	overflow: scroll;
 }
 
 .card-content {

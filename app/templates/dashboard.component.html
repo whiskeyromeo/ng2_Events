@@ -1,38 +1,45 @@
 <div class="container" >
     <div class="content pull-right">
-    	<a class="btn btn-success addEvent" href="/events">+</a>
+    	<a class="btn btn-success addEvent" [routerLink]="['Todo']">+</a>
     </div>
-    <h2>Recently Listed Events</h2>
-	<section class="main" *ngIf="eventStore.events">
-		<div *ngFor="let event of eventStore.events">
-			<div class="card-holder col-sm-4">
-				<div class="card">
-					<div class="card-options" *ngIf="event.creatorId === currentUser.id">
-						<h4 class="btn btn-primary col-xs-6">
-							<span class="glyphicon glyphicon-pencil"></span>
-							Edit
-						</h4>
-						<h4 class="btn btn-danger col-xs-6" (click)="removeEvent(event)">
-							<span class="glyphicon glyphicon-trash"></span>
-							Delete
-						</h4>
-					</div>
-					<div class="card-header">
-						<h2 class="card-title">{{event.title}}</h2>
-						<p *ngIf="event.host"><i>Hosted by {{event.host}}</i></p>
-					</div>
-					<div class="card-content">
-						<p class="card-text"><b>Type: </b>{{event.type}}</p>
-						<p><b>Description: </b>{{event.description | slice:0:20 }}...</p>
-						<p *ngIf="compareDates(event.startDate, event.endDate)"><b>When: </b>{{ formatDate(event.startDate) | date}} - {{formatDate(event.endDate) | date }}</p>
-						<p *ngIf="!compareDates(event.startDate, event.endDate)"><b>When: </b>{{ formatDate(event.startDate) | date}}</p>
-						<p *ngIf="event.guests"><b>Guests Invited: </b>{{event.guests}}</p>
-						<p *ngIf="checkTime(event.startDate, event.endDate)"><b>Time: </b>{{formatDate(event.startDate) | date: 'jm'}} - {{formatDate(event.endDate) | date: 'jm'}}</p>
-						<p *ngIf="!checkTime(event.startDate, event.endDate)"><b>Time: </b>{{formatDate(event.startDate) | date: 'jm'}}
-						<p class="btn link" (click)="goToDetail(event)">More Details...</p>
+    <div>
+	    <h2>Recently Listed Events</h2>
+		<section class="main" *ngIf="eventStore.events">
+			<div *ngFor="let event of eventStore.events">
+				<div class="card-holder col-sm-4">
+					<div class="card">
+						<div class="card-options" *ngIf="event.creatorId === currentUser.id">
+							<h4 class="btn btn-primary col-xs-6" [routerLink]="['EventEdit', {id: event.id}]">
+								<span class="glyphicon glyphicon-pencil"></span>
+								Edit
+							</h4>
+							<h4 class="btn btn-danger col-xs-6" (click)="removeEvent(event)">
+								<span class="glyphicon glyphicon-trash"></span>
+								Delete
+							</h4>
+						</div>
+						<div class="card-header">
+							<h2 class="card-title">{{event.title}}</h2>
+							<p *ngIf="event.host"><i>Hosted by {{event.host}}</i></p>
+						</div>
+						<div class="card-content">
+							<p class="card-text"><b>Type: </b>{{event.type}}</p>
+							<p><b>Description: </b>{{event.description | slice:0:20 }}...</p>
+							<p *ngIf="compareDates(event.startDate, event.endDate)"><b>When: </b>{{ formatDate(event.startDate) | date}} - {{formatDate(event.endDate) | date }}</p>
+							<p *ngIf="!compareDates(event.startDate, event.endDate)"><b>When: </b>{{ formatDate(event.startDate) | date}}</p>
+							<p *ngIf="event.guests"><b>Guests Invited: </b>{{event.guests}}</p>
+							<p *ngIf="checkTime(event.startDate, event.endDate)"><b>Time: </b>{{formatDate(event.startDate) | date: 'jm'}} - {{formatDate(event.endDate) | date: 'jm'}}</p>
+							<p *ngIf="!checkTime(event.startDate, event.endDate)"><b>Time: </b>{{formatDate(event.startDate) | date: 'jm'}}</p>
+							<p class="btn link" [routerLink]="['EventDetail', {id: event.id }]">More Details.. </p>
+							
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-	</section>
+		</section>
+		<section *ngIf=!eventStore.events>
+			<h2>No Events have been created</h2>
+		</section>
+    </div>
 </div>
+<router-outlet></router-outlet>

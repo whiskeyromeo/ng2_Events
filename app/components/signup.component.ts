@@ -19,6 +19,7 @@ export class SignupComponent implements AfterViewInit{
 	formBuilder = FormBuilder;
 	active = true;
 	submitted = false;
+	signupForm: any;
 
 	constructor(
 		private _service: AuthService,

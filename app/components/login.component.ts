@@ -22,6 +22,7 @@ export class LoginComponent implements AfterViewInit{
 	active = true;
 	submitted = false;
 	public errorMsg = '';
+	loginForm: any;
 
 
 	constructor(
@@ -34,7 +35,12 @@ export class LoginComponent implements AfterViewInit{
 			password: ['', Validators.required]
 		})
 
-		this.loginForm.valueChanges.subscribe(data => console.log('form changes', data));
+		this.loginForm.valueChanges.subscribe(() => {
+			if(this.errorMsg) {
+				this.errorMsg = null;
+			}
+		})
+
 	}
 
 	ngAfterViewInit() {
@@ -49,7 +55,7 @@ export class LoginComponent implements AfterViewInit{
 		
 		console.log(user)
 		if(!this._service.login(user)) {
-			this.errorMsg = 'Failed to login';
+			this.errorMsg = 'Invalid username or password';
 		} else {
 			console.log('successful!')
 		}

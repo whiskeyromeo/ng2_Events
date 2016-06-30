@@ -5,8 +5,10 @@
 			<h4><i>a {{event.type}} hosted by {{event.host}}</i></h4>
 		</div>
 		<div class="date col-md-4 col-sm-12 col-xs-12">
-			<h4><b>June 5, 2025 - June 8, 2025</b></h4>
-			<h4><b>12:00 AM - 12:05 PM</b></h4>
+			<h4 *ngIf="compareDates(event.startDate, event.endDate)"><b>{{ formatDate(event.startDate) | date}} - {{formatDate(event.endDate) | date }}</b></h4>
+			<h4 *ngIf="!compareDates(event.startDate, event.endDate)"><b>{{ formatDate(event.startDate) | date}}</b></h4>
+			<h4 *ngIf="checkTime(event.startDate, event.endDate)"><b>{{formatDate(event.startDate) | date: 'jm'}} - {{formatDate(event.endDate) | date: 'jm'}}</b></h4>
+			<h4 *ngIf="!checkTime(event.startDate, event.endDate)"><b>{{formatDate(event.startDate) | date: 'jm'}}</b></h4>
 		</div>
 	</div>
 	<div class="main-content col-md-12">	
@@ -28,5 +30,7 @@
 			</fieldset>
 		</div>
 	</div>
-
+</div>
+<div class="container" *ngIf="!event">
+	<h3>Event Details not available</h3>
 </div>

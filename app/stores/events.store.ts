@@ -1,5 +1,3 @@
-//import { Event } from '../event'
-
 export class Event {
 	private _id: number;
 	private _title: string;
@@ -90,10 +88,40 @@ export class EventStore {
 	}
 
 	addEvent(title: string, type: string, sDate: string, eDate: string, creatorId: number, desc?: string, host?: string, guests?: string) {
-		let id = this.events.length + 1;
+		
+		let id = this.getNewId(this.events);
 		var event = new Event(id, title, type, desc, sDate, eDate, creatorId, host, guests);
 		this.events.push(event)
 		this.updateStore();
+	}
+
+	updateEvent(editedEvent: Event) {
+		for(let ev in this.events) {
+			if(this.events.hasOwnProperty(ev)) {
+				if (this.events[ev].id === editedEvent.id) {
+					this.events[ev] = editedEvent;
+					this.updateStore();
+					break;
+				}
+			}
+		}
+		
+		
+	}
+
+	getNewId(arr) {
+		if (arr.length < 1) {
+			return 1;
+		} else {
+			let idArr = [];
+			for (let i = 0; i < arr.length; i++) {
+				console.log('id of i: ', arr[i].id);
+				idArr.push(arr[i].id);
+
+			}
+			console.log('idArray: ', Math.max(...idArr) + 1);
+			return Math.max(...idArr) + 1;
+		}
 	}
 
 	removeEvent(event: Event) {

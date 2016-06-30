@@ -1,0 +1,70 @@
+<div class="container container-fluid">
+	<div class="col-sm-12">
+		<h2 class="">Add Event</h2>
+		<button class="btn btn-danger" (click)="clearForm()">Clear Form</button>
+		<hr>
+	</div>
+	<hr>
+	<form [ngFormModel]="eventForm" (submit)="addEvent()">
+		<div class="form-group row">
+			<label for="enterEvent" class="col-sm-2 form-control-label">Event Title</label>
+			<div class="col-sm-10">
+				<input id="enterEvent" #title type="text" class="form-control" placeholder="Add Event" [ngFormControl]="eventForm.controls['newEvent']" required>
+				<control-messages control="newEvent" type="Event Title"></control-messages>
+			</div>
+		</div>
+		<div class="form-group row">
+			<label for="eType" class="col-sm-2 form-control-label">Event Type</label>
+			<div class="col-sm-10">
+				<select id="eType" class="form-control" [ngFormControl]="eventForm.controls['eType']" required>
+					<option *ngFor="let event of eventTypes">{{event}}</option>
+				</select>
+				<control-messages control="eType" type="Event Type"></control-messages>
+			</div>
+		</div>
+		<div class="form-group row">
+			<label for="eventDescribe" class="col-sm-2 form-control-label">Event Description</label>
+			<div class="col-sm-10">
+				<textarea id="eventDescribe" type="text" class="form-control" rows="3" [ngFormControl]="eventForm.controls['eDesc']" ></textarea>
+				<control-messages control="eDesc" type="Event Description"></control-messages>
+			</div>
+		</div>
+		<div class="form-group row">
+			<label for="startDate" class="col-sm-2 form-control-label">Start Date</label>
+			<div class="col-sm-4">
+				<input class="date" [(ngModel)]="startDate" type="date" min="{{getDate()}}" (ngModelChange)="checkEndDate($event)" [ngFormControl]="eventForm.controls['startDate']" class="form-control" required>
+				<control-messages control="startDate" type="Start Date"></control-messages>
+			</div>
+			<label for="endDate" class="col-sm-2 form-control-label">End Date</label>
+			<div class="col-sm-4">
+				<input class="date" type="date" class="form-control" [(ngModel)]="endDate" [ngFormControl]="eventForm.controls['endDate']" min="{{startDate}}" required>
+				<control-messages control="endDate" type="End Date"></control-messages>
+			</div>
+		</div>
+		<div class="form-group row">
+			<label for="eventTime" class="col-sm-2 form-control-label">Start Time</label>
+			<div class="col-sm-4">
+				<timepicker [(ngModel)]="startTime" (ngModelChange)="checkEndTime($event)" [hourStep]="hstep" [minuteStep]="mstep" [showMeridian]="ismeridian"></timepicker>
+			</div>
+			<label for="endTime" class="col-sm-2 form-control-label">End Time</label>
+			<div class="col-sm-4">
+				<timepicker [(ngModel)]="endTime" (ngModelChange)="checkStartTime($event)" [hourStep]="hstep" [minuteStep]="mstep" [showMeridian]="ismeridian"></timepicker>
+				<control-messages control="endTime" type="End Time"></control-messages>
+			</div>
+		</div>
+		<div class="form-group row">
+			<label for="host" class="col-sm-2 form-control-label">Host</label>
+			<div class="col-sm-10">
+				<input name="fname" type="text" id="host" [ngFormControl]="eventForm.controls['host']" class="form-control" autocomplete="given-name">
+				<control-messages control="host" type="Host"></control-messages>
+			</div>
+		</div>
+		<div class="form-group row">
+			<label for="guests" class="col-sm-2 form-control-label">Guests</label>
+			<div class="col-sm-10">	
+				<textarea id="guests" [ngFormControl]="eventForm.controls['guests']" rows="3" class="form-control"></textarea>
+			</div>
+		</div>
+		<button class="btn btn-primary mobile-btn" [disabled]="!eventForm.valid">Submit</button>
+	</form>
+</div>

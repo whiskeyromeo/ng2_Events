@@ -1,7 +1,13 @@
-<div class="container container-fluid">
-	<h2>Add Event</h2>
+<div class="container container-fluid" *ngIf="event">
+	<div class="col-sm-12">
+		<h2 class="">Edit {{event.title}}</h2>
+		<button class="btn btn-warning mobile-btn" (click)="clearForm()">Clear Form</button>
+		<button class="btn btn-danger mobile-btn" (click)="removeEvent()"> Delete Event</button>
+
+		<hr>
+	</div>
 	<hr>
-	<form [ngFormModel]="eventForm" (submit)="addEvent()">
+	<form [ngFormModel]="eventForm" (submit)="updateEvent()">
 		<div class="form-group row">
 			<label for="enterEvent" class="col-sm-2 form-control-label">Event Title</label>
 			<div class="col-sm-10">
@@ -28,7 +34,7 @@
 		<div class="form-group row">
 			<label for="startDate" class="col-sm-2 form-control-label">Start Date</label>
 			<div class="col-sm-4">
-				<input class="date" [(ngModel)]="startDate" type="date" min="{{getDate()}}" [ngFormControl]="eventForm.controls['startDate']" class="form-control" required>
+				<input class="date" [(ngModel)]="startDate" type="date" min="{{startDate}}" (ngModelChange)="checkEndDate($event)" [ngFormControl]="eventForm.controls['startDate']" class="form-control" required>
 				<control-messages control="startDate" type="Start Date"></control-messages>
 			</div>
 			<label for="endDate" class="col-sm-2 form-control-label">End Date</label>
@@ -61,6 +67,6 @@
 				<textarea id="guests" [ngFormControl]="eventForm.controls['guests']" rows="3" class="form-control"></textarea>
 			</div>
 		</div>
-		<button class="btn btn-primary mobile-btn" [disabled]="!eventForm.valid">Submit</button>
+		<button class="btn btn-success mobile-btn" [disabled]="!eventForm.valid">Update Event</button>
 	</form>
 </div>

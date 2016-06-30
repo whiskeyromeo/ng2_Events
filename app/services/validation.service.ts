@@ -1,4 +1,5 @@
 import { ControlGroup } from '@angular/common';
+import { DateService } from '../services/date.service';
 
 export class ValidationService {
 
@@ -14,9 +15,20 @@ export class ValidationService {
 				 Number.`,
 			'mismatchedPasswords': `Password and Confirm Password must match.`,
 			'invalidZip': `Zip must be 5 digits`,
-			'invalidString': `${quality} is not valid.`
+			'invalidString': `${quality} is not valid.`,
+			'invalidDate': `${quality} is not valid`
 		}
 		return config[code];
+	}
+
+	static checkDate(control) {
+		let thisDate = new Date();
+		let controlDate = new Date(control.value);
+		console.log(thisDate.getDate(), controlDate.getDate())
+		if(controlDate.getDate() < thisDate.getDate()) {
+			return { 'invalidDate': true}
+		}
+		return null;
 	}
 
 	static validateEmail(control) {
