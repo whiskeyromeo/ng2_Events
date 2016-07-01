@@ -1,6 +1,7 @@
 import { Component, OnInit, ElementRef, ViewChild, Renderer, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, Validators, Control,  ControlGroup } from '@angular/common';
-import { EventStore, Event } from '../stores/events.store';
+import { EventStore } from '../stores/events.store';
+import { Event } from '../event';
 import { ControlMessages } from '../control-messages';
 import { ValidationService } from '../services/validation.service';
 import { AuthService } from '../services/auth.service';
@@ -12,11 +13,13 @@ import { Router, RouteParams } from '@angular/router-deprecated';
 
 import { User } from '../user';
 
+import { AddressComponent } from './address.component';
+
 @Component({
 	selector: 'event-form',
 	templateUrl: 'app/templates/event-add.component.html',
 	styleUrls: ['static/css/event.component.css'],
-	directives: [TimepickerComponent, ControlMessages],
+	directives: [TimepickerComponent, ControlMessages, AddressComponent],
 	providers: [EventFormService, DateService, EventService]
 })
 
@@ -93,7 +96,7 @@ export class AddEventComponent {
 				end,
 				this.currentUser.id,
 				this.eventForm.value.eDesc,
-				this.eventForm.value.host
+				this.eventForm.value.host,
 				this.eventForm.value.guests,
 			)
 			

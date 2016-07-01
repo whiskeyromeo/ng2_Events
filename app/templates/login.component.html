@@ -17,7 +17,8 @@
 			</div>
 			<button type="submit" [disabled]="!loginForm.valid"class="btn btn-primary mobile-btn">Login</button>
 		</form>
-		<a href="/signup">Click here to signup</a>
+		<a [routerLink]="['Signup']">Click here to signup</a>
+		<router-outlet></router-outlet>
 	</div>
 	<div [hidden]="!submitted">
 		<h2>You are being logged in...</h2>

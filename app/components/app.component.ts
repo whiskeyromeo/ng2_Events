@@ -9,6 +9,7 @@ import { EventDetailComponent } from './event-detail.component';
 import { EventEditComponent } from './event-edit.component';
 import { AuthService } from '../services/auth.service';
 
+
 @Component({
 	selector: 'my-app',
 	templateUrl: 'app/templates/app.component.html',

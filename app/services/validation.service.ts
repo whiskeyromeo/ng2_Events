@@ -24,7 +24,6 @@ export class ValidationService {
 	static checkDate(control) {
 		let thisDate = new Date();
 		let controlDate = new Date(control.value);
-		console.log(thisDate.getDate(), controlDate.getDate())
 		if(controlDate.getDate() < thisDate.getDate()) {
 			return { 'invalidDate': true}
 		}

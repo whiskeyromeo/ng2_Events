@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { EventService } from '../services/event.service';
 import { DateService } from '../services/date.service';
-import { Event } from '../stores/events.store'; 
+import { Event } from '../event';
 import { User } from '../user';
 import { RouteParams } from '@angular/router-deprecated';
 

@@ -60,6 +60,18 @@
 			</div>
 		</div>
 		<div class="form-group row">
+			<label for="eType" class="col-sm-2 form-control-label">Event Type</label>
+			<div class="col-sm-6">
+				<select id="eType" class="form-control" required>
+					<option>
+						
+					</option>
+				</select>
+				<address></address>
+				<control-messages control="eType" type="Event Type"></control-messages>
+			</div>
+		</div>
+		<div class="form-group row">
 			<label for="guests" class="col-sm-2 form-control-label">Guests</label>
 			<div class="col-sm-10">	
 				<textarea id="guests" [ngFormControl]="eventForm.controls['guests']" rows="3" class="form-control"></textarea>

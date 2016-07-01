@@ -9,7 +9,7 @@ import { ValidationService } from '../services/validation.service';
 @Component({
 	selector: 'my-app',
 	templateUrl: 'app/templates/signup.component.html',
-	directives: [ControlMessages]
+	directives: [ControlMessages],
 	providers: [AuthService, UserStore]
 })
 

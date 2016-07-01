@@ -3,7 +3,8 @@ import { AuthService } from '../services/auth.service';
 import { DateService } from '../services/date.service';
 import { ROUTER_DIRECTIVES } from '@angular/router-deprecated';
 import { User } from '../user'; 
-import { EventStore, Event } from '../stores/events.store';
+import { EventStore } from '../stores/events.store';
+import { Event } from '../event';
 import * as moment from 'moment';
 
 @Component({

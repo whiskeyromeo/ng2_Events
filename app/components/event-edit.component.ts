@@ -1,6 +1,7 @@
 import { Component, OnInit, ElementRef, ViewChild, Renderer, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, Validators, Control, ControlGroup } from '@angular/common';
-import { EventStore, Event } from '../stores/events.store';
+import { EventStore } from '../stores/events.store';
+import { Event } from '../event';
 import { ControlMessages } from '../control-messages';
 import { ValidationService } from '../services/validation.service';
 import { AuthService } from '../services/auth.service';

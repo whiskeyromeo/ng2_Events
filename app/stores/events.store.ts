@@ -1,54 +1,4 @@
-export class Event {
-	private _id: number;
-	private _title: string;
-	private _type: string;
-	private _description: string;
-	private _startDate: string;
-	private _endDate: string;
-	private _creatorId: number;
-	private _host: string;
-	private _guests?: string;
-
-	get id() { return this._id; }
-
-	get creatorId() { return this._creatorId }
-
-	get title() { return this._title; }
-
-	get type() { return this._type; }
-
-	get description() { return this._description; }
-
-	get startDate() {
-		return this._startDate;
-	}
-
-	get endDate() {
-		return this._endDate;
-	}
-
-	get host() {
-		return this._host;
-	}
-
-	get guests() {
-		return this._guests;
-	}
-
-	constructor(id: number, title: string, type: string, description: string, startDate: string, endDate: string, creatorId: number, host?: string, guests?: string) {
-		this._id = id;
-		this._title = title;
-		this._type = type;
-		this._description = description;
-		this._startDate = startDate;
-		this._endDate = endDate;
-		this._creatorId = creatorId;
-		this._host = host;
-		this._guests = guests;
-
-	}
-
-}
+import {Event} from '../event';
 
 export class EventStore {
 	events: Event[];
@@ -83,43 +33,48 @@ export class EventStore {
 		});
 	}
 
-	private updateStore() {
+	private updateEventStore() {
 		localStorage.setItem('ng2-events', JSON.stringify(this.events));
 	}
 
-	addEvent(title: string, type: string, sDate: string, eDate: string, creatorId: number, desc?: string, host?: string, guests?: string) {
+	/*
+		Add an event
+	*/
+	addEvent(title: string, type: string, sDate: any, eDate:any, creatorId: number, desc?: string, host?:string, guests?:string) {
 		
 		let id = this.getNewId(this.events);
 		var event = new Event(id, title, type, desc, sDate, eDate, creatorId, host, guests);
 		this.events.push(event)
-		this.updateStore();
+		this.updateEventStore();
 	}
 
+	/*
+		Update an event
+	*/
 	updateEvent(editedEvent: Event) {
 		for(let ev in this.events) {
 			if(this.events.hasOwnProperty(ev)) {
 				if (this.events[ev].id === editedEvent.id) {
 					this.events[ev] = editedEvent;
-					this.updateStore();
+					this.updateEventStore();
 					break;
 				}
 			}
-		}
-		
-		
+		}	
 	}
 
+	/*
+		Create a unique id for each event created.
+		Temporary: To be removed upon database integration.
+	*/
 	getNewId(arr) {
 		if (arr.length < 1) {
 			return 1;
 		} else {
 			let idArr = [];
 			for (let i = 0; i < arr.length; i++) {
-				console.log('id of i: ', arr[i].id);
 				idArr.push(arr[i].id);
-
 			}
-			console.log('idArray: ', Math.max(...idArr) + 1);
 			return Math.max(...idArr) + 1;
 		}
 	}
@@ -127,6 +82,6 @@ export class EventStore {
 	removeEvent(event: Event) {
 		let index = this.events.indexOf(event);
 		this.events.splice(index, 1);
-		this.updateStore();
+		this.updateEventStore();
 	}
 }

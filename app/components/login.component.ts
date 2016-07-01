@@ -1,6 +1,6 @@
 import { Component, ViewChild, Renderer, AfterViewInit } from '@angular/core';
 import { NgForm, FormBuilder, Validators, ControlGroup, Control } from '@angular/common';
-import { Router, ROUTER_PROVIDERS } from '@angular/router-deprecated';
+import { Router, ROUTER_PROVIDERS, ROUTER_DIRECTIVES } from '@angular/router-deprecated';
 import { ControlMessages } from '../control-messages';
 import { User } from '../user';
 import { UserStore } from '../stores/user.store'
@@ -10,7 +10,7 @@ import { ValidationService } from '../services/validation.service';
 @Component({
 	selector: 'login',
 	templateUrl: 'app/templates/login.component.html',
-	directives: [ControlMessages],
+	directives: [ControlMessages, ROUTER_DIRECTIVES],
 	providers: [AuthService, UserStore]
 })
 
