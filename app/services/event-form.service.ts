@@ -60,7 +60,7 @@ export class EventFormService {
 				'endDate': [event.endDate, Validators.required],
 				'startTime': [event.startDate, Validators.compose([Validators.required])],
 				'endTime': [event.endDate, Validators.required],
-				'address': [event.address],
+				'address': [event.address, ValidationService.addressRequired],
 				'guests': [event.guests, Validators.required],
 				'host': [event.host, Validators.compose([ValidationService.checkString, Validators.required])]
 			});

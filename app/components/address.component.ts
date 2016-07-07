@@ -5,6 +5,7 @@ import { Control } from '@angular/common';
 	templateUrl: 'app/templates/address.component.html',
 	styleUrls: ['static/css/address.component.css'],
 	providers: [],
+	directives: [],
 	inputs: ['address', 'addressControl']
 })
 
@@ -18,8 +19,7 @@ export class AddressComponent implements OnInit{
 
 	constructor(
 		private cdr:ChangeDetectorRef
-	) { 
-	}
+	) { }
 
 	ngOnInit() {
 		let instance = this

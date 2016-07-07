@@ -26,9 +26,10 @@ export class ValidationService {
 		TODO: Figure out how to set error messages/validation 
 		the child Timepicker component.
 	*/
-	static checkTime(control) {
-		//console.log('checking Time');
-		//console.log('startTime', control);
+	static addressRequired(control) {
+		if(control.value == '') {
+			return { 'addressRequired': true }
+		}
 		return null;
 	}
 
