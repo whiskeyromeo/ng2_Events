@@ -17,3 +17,10 @@ Integrate more Css functionality
 Integrate 0Auth functionality
 
 Input the validations for signup, login, and event creation
+
+
+## Notes
+About Signup
+
+LocalStorage seems to take a minute to recognize new signups.
+

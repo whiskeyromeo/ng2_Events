@@ -1,4 +1,3 @@
-<button class="btn btn-success mobile-btn">Add an Address</	button>
 <div>
-	<input type="text" id="autocomplete" placeholder="Enter your address" onFocus="console.log('focusing')">
+	 <input class="form-control" type="text" [(ngModel)]="location" [ngFormControl]="addressControl" id="search-box" required>
 </div>

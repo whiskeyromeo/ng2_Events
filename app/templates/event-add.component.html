@@ -55,26 +55,22 @@
 		<div class="form-group row">
 			<label for="host" class="col-sm-2 form-control-label">Host</label>
 			<div class="col-sm-10">
-				<input name="fname" type="text" id="host" [ngFormControl]="eventForm.controls['host']" class="form-control" autocomplete="given-name">
+				<input name="fname" type="text" id="host" [ngFormControl]="eventForm.controls['host']" class="form-control" autocomplete="given-name" (click)="checkEvent()" required>
 				<control-messages control="host" type="Host"></control-messages>
 			</div>
 		</div>
 		<div class="form-group row">
-			<label for="eType" class="col-sm-2 form-control-label">Event Type</label>
-			<div class="col-sm-6">
-				<select id="eType" class="form-control" required>
-					<option>
-						
-					</option>
-				</select>
-				<address></address>
-				<control-messages control="eType" type="Event Type"></control-messages>
+			<label for="eType" class="col-sm-2 form-control-label">
+				Location
+			</label>
+			<div name="location" class="col-sm-10">
+				<address [(location)]="address" [addressControl]="eventForm.controls['address']" (onChange)="updateAddress($event)" required></address>
 			</div>
 		</div>
 		<div class="form-group row">
 			<label for="guests" class="col-sm-2 form-control-label">Guests</label>
 			<div class="col-sm-10">	
-				<textarea id="guests" [ngFormControl]="eventForm.controls['guests']" rows="3" class="form-control"></textarea>
+				<textarea id="guests" [ngFormControl]="eventForm.controls['guests']" rows="3" class="form-control" required></textarea>
 			</div>
 		</div>
 		<button class="btn btn-primary mobile-btn" [disabled]="!eventForm.valid">Submit</button>

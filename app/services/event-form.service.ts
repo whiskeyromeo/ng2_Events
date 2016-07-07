@@ -43,29 +43,35 @@ export class EventFormService {
 				'eType': [this.eventTypes[0]],
 				'eDesc': [''],
 				'startDate': ['', Validators.compose([Validators.required, ValidationService.checkDate])],
-				'endDate': ['', ValidationService.checkDate],
-				'startTime': [this.startTime, Validators.compose([Validators.required])],
-				'endTime': [this.endTime],
-				'guests': [''],
-				'host': [this.currentUser.name, Validators.compose([ValidationService.checkString])]
+				'endDate': ['', Validators.compose([Validators.required, ValidationService.checkDate])],
+				'startTime': [this.startTime, Validators.compose([ValidationService.checkTime, Validators.required])],
+				'endTime': [this.endTime, Validators.required],
+				'address': ['', Validators.required],
+				'guests': ['', Validators.required],
+				'host': [this.currentUser.name, Validators.compose([Validators.required, ValidationService.checkString])]
 			});
 		} else {
 
-
-
 			this.eventForm = this.formBuilder.group({
 				'newEvent': [event.title, Validators.required],
-				'eType': [event.type],
+				'eType': [event.type, Validators.required],
 				'eDesc': [event.description],
 				'startDate': [event.startDate, Validators.compose([Validators.required])],
-				'endDate': [event.endDate],
+				'endDate': [event.endDate, Validators.required],
 				'startTime': [event.startDate, Validators.compose([Validators.required])],
-				'endTime': [event.endDate],
-				'guests': [event.guests],
-				'host': [event.host, Validators.compose([ValidationService.checkString])]
+				'endTime': [event.endDate, Validators.required],
+				'address': [event.address],
+				'guests': [event.guests, Validators.required],
+				'host': [event.host, Validators.compose([ValidationService.checkString, Validators.required])]
 			});
 		}
 		return this.eventForm;
+	}
+
+	updateAddress(event) {
+		console.log(event);
+		this.address = event;
+		this.eventForm.value.address = event;
 	}
 
 	/*
@@ -83,6 +89,10 @@ export class EventFormService {
 		Check/set the endTime
 	*/
 	checkEndTime(startValue) {
+		if(isNaN(startValue){
+			this.eventForm.value.startTime = undefined;
+			console.log('invalid startValue');
+		}
 		if (this.eventForm.value.startDate == this.eventForm.value.endDate) {
 			if (this.startTime > this.endTime) {
 				this.endTime = startValue;

@@ -6,7 +6,8 @@ export class Event {
 	private _startDate: string;
 	private _endDate: string;
 	private _creatorId: number;
-	private _host: string;
+	private _host?: string;
+	private _address?: string;
 	private _guests?: string;
 
 	get id() { return this._id; }
@@ -31,11 +32,15 @@ export class Event {
 		return this._host;
 	}
 
+	get address() {
+		return this._address;
+	}
+
 	get guests() {
 		return this._guests;
 	}
 
-	constructor(id: number, title: string, type: string, description: string, startDate: string, endDate: string, creatorId: number, host?: string, guests?: string) {
+	constructor(id: number, title: string, type: string, description: string, startDate: string, endDate: string, creatorId: number, host?: string, address?: string, guests?: string) {
 		this._id = id;
 		this._title = title;
 		this._type = type;
@@ -44,6 +49,7 @@ export class Event {
 		this._endDate = endDate;
 		this._creatorId = creatorId;
 		this._host = host;
+		this._address = address;
 		this._guests = guests;
 
 	}

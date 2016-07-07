@@ -9,6 +9,7 @@ import { DateService } from '../services/date.service';
 import { EventService } from '../services/event.service';
 import { EventFormService } from '../services/event-form.service';
 import { TimepickerComponent } from 'ng2-bootstrap/ng2-bootstrap';
+import { AddressComponent } from './address.component';
 import { Router, RouteParams } from '@angular/router-deprecated';
 
 import { User } from '../user';
@@ -18,15 +19,17 @@ import { User } from '../user';
 	selector: 'EventEdit',
 	templateUrl: 'app/templates/event-edit.component.html',
 	styleUrls: ['static/css/event.component.css'],
-	directives: [TimepickerComponent, ControlMessages],
+	directives: [TimepickerComponent, ControlMessages, AddressComponent],
 	providers: [EventFormService, DateService, EventService],
 	inputs: ['event']
 })
 
 export class EventEditComponent implements OnInit {
 	@ViewChild('title') input: ElementRef;
+	address: any;
 	currentUser: User;
 	event: Event;
+	addressControl: Control;
 	formBuilder: FormBuilder;
 	eventStore: EventStore;
 	eventForm: ControlGroup;
@@ -61,7 +64,6 @@ export class EventEditComponent implements OnInit {
 		private _routeParams: RouteParams,
 		private _router: Router
 	) {
-
 		this._AuthService.checkCreds();
 
 		this.currentUser = JSON.parse(localStorage.getItem('loggedInUser'))
@@ -76,6 +78,8 @@ export class EventEditComponent implements OnInit {
 		this.checkStartTime = this._EventFormService.checkStartTime;
 		this.checkEndTime = this._EventFormService.checkEndTime;
 		this.checkEndDate = this._EventFormService.checkEndDate;
+
+		this.updateAddress = this._EventFormService.updateAddress;
 	}
 
 	ngOnInit() {
@@ -83,10 +87,11 @@ export class EventEditComponent implements OnInit {
 		this.event = this._EventService.getEvent2(id)
 
 		this.eventForm = this._EventFormService.buildEventForm(this.event);
-		
+		if(this.event.address){
+			this.address = this.event.address;
+		}
 		this.startTime = new Date(this.event.startDate);
 		this.endTime = new Date(this.event.endDate);
-		
 		this.startDate = this._DateService.getDate(this.startTime);
 		this.endDate = this._DateService.getDate(this.endTime);
 
@@ -120,6 +125,7 @@ export class EventEditComponent implements OnInit {
 				end,
 				this.event.creatorId,
 				this.eventForm.value.host,
+				this.eventForm.value.address,
 				this.eventForm.value.guests
 			);
 

@@ -24,7 +24,7 @@
 						</div>
 						<div class="card-content">
 							<p class="card-text"><b>Type: </b>{{event.type}}</p>
-							<p><b>Description: </b>{{event.description | slice:0:20 }}...</p>
+							<p><b>Where: </b>{{event.address | slice:0:20 }}...</p>
 							<p *ngIf="compareDates(event.startDate, event.endDate)"><b>When: </b>{{ formatDate(event.startDate) | date}} - {{formatDate(event.endDate) | date }}</p>
 							<p *ngIf="!compareDates(event.startDate, event.endDate)"><b>When: </b>{{ formatDate(event.startDate) | date}}</p>
 							<p *ngIf="event.guests"><b>Guests Invited: </b>{{event.guests}}</p>

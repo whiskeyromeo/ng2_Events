@@ -5,6 +5,7 @@ export class ValidationService {
 
 	static getValidatorErrorMessage(code: string, quality: string) {
 		let config = {
+			'addressRequired' : 'Location is required.'
 			'required' : `${quality} is Required`,
 			'minlength': `${quality} is too short.`,
 			'invalidEmail': `Invalid Email address.`,
@@ -21,11 +22,28 @@ export class ValidationService {
 		return config[code];
 	}
 
+	/*
+		TODO: Figure out how to set error messages/validation 
+		the child Timepicker component.
+	*/
+	static checkTime(control) {
+		//console.log('checking Time');
+		//console.log('startTime', control);
+		return null;
+	}
+
 	static checkDate(control) {
-		let thisDate = new Date();
-		let controlDate = new Date(control.value);
-		if(controlDate.getDate() < thisDate.getDate()) {
-			return { 'invalidDate': true}
+		if (control.value) {
+			let strInputVal = control.value;
+			//Correct the Date bug in JS which causes datepicker 
+			//generated Date values to be off by one day.
+			strInputVal = strInputVal.split('-').join('/');
+			let thisDate = new Date();
+			thisDate.setHours(0, 0, 0, 0);
+			let controlDate = new Date(strInputVal);
+			if (controlDate < thisDate) {
+				return { 'invalidDate': true }
+			}
 		}
 		return null;
 	}

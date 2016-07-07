@@ -16,6 +16,7 @@ export class EventStore {
 			_endDate: string,
 			_creatorId: number,
 			_host: string,
+			_address: string,
 			_guests: string
 		}) => {
 			let ret = new Event(
@@ -27,6 +28,7 @@ export class EventStore {
 				event._endDate,
 				event._creatorId,
 				event._host,
+				event._address,
 				event._guests
 			);
 			return ret;
@@ -40,10 +42,10 @@ export class EventStore {
 	/*
 		Add an event
 	*/
-	addEvent(title: string, type: string, sDate: any, eDate:any, creatorId: number, desc?: string, host?:string, guests?:string) {
+	addEvent(title: string, type: string, sDate: any, eDate: any, creatorId: number, desc?: string, host?: string, address?: string, guests?:string) {
 		
 		let id = this.getNewId(this.events);
-		var event = new Event(id, title, type, desc, sDate, eDate, creatorId, host, guests);
+		var event = new Event(id, title, type, desc, sDate, eDate, creatorId, host, address, guests);
 		this.events.push(event)
 		this.updateEventStore();
 	}

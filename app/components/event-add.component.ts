@@ -25,6 +25,8 @@ import { AddressComponent } from './address.component';
 
 export class AddEventComponent { 
 	@ViewChild('title') input: ElementRef;
+	address: any;
+	addressControl: Control;
 	currentUser: User;
 	event: Event;
 	formBuilder: FormBuilder;
@@ -37,6 +39,11 @@ export class AddEventComponent {
 	eventTypes = [
 		'Birthday Party', 'Wedding', 'Hootenanny','Gathering', 'Shindig', 'Other'
 	]
+	prepareDate: any;
+	getDate: any;
+	checkStartTime: any;
+	checkEndTime: any;
+	checkEndDate: any;
 
 
 	/*
@@ -70,6 +77,11 @@ export class AddEventComponent {
 		this.checkStartTime = this._EventFormService.checkStartTime;
 		this.checkEndTime = this._EventFormService.checkEndTime;
 		this.checkEndDate = this._EventFormService.checkEndDate;
+		this.updateAddress = this._EventFormService.updateAddress;
+		// this.eventForm.valueChanges.subscribe((data) => {
+		// 	console.log('data: ', data);
+		// });
+
 	}
 
 	/*
@@ -78,6 +90,13 @@ export class AddEventComponent {
 	ngAfterViewInit() {
 		this.renderer.invokeElementMethod(this.input.nativeElement, 'focus');
 	}
+
+	// updateAddress(event) {
+	// 	console.log('inside checkEvent!', event);
+	// 	this.address = event;
+	// 	this.eventForm.value.address = event;
+	// 	console.log('this.address: ' this.address);
+	// }
 
 	/*
 		Add an event if values are valid and the form has been 
@@ -88,7 +107,7 @@ export class AddEventComponent {
 			
 			let start = this.prepareDate(this.startDate, this.startTime);
 			let end = this.prepareDate(this.endDate, this.endTime);
-
+			console.log('address: ', this.address);
 			this.eventStore.addEvent(
 				this.eventForm.value.newEvent,
 				this.eventForm.value.eType,
@@ -97,7 +116,8 @@ export class AddEventComponent {
 				this.currentUser.id,
 				this.eventForm.value.eDesc,
 				this.eventForm.value.host,
-				this.eventForm.value.guests,
+				this.address,
+				this.eventForm.value.guests
 			)
 			
 			this._router.navigate(['Dashboard']);

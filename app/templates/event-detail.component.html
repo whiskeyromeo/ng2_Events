@@ -24,9 +24,9 @@
 				<legend>Invited Guests</legend>
 				<p>{{event.guests}}</p>
 			</fieldset>
-			<fieldset class="address" *ngIf="event.guests">
+			<fieldset class="address" *ngIf="event.address">
 				<legend>Location</legend>
-				<p>123 Rockefeller St. Camden, New Jersey 12345</p>
+				<p>{{event.address}}</p>
 			</fieldset>
 		</div>
 	</div>
