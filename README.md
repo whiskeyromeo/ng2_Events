@@ -1,4 +1,4 @@
-## Event Planner
+## Angular2 Event Planner
 
 Written 7.8.2016
 
@@ -35,6 +35,8 @@ project using something like httpster or http-server.
 
 LocalStorage seems to need a refresh of the page to recognize new signups. Figured it wasn't worth correcting since actually storing information with plaintext passwords on the client side is about as bad as it gets...
 
+The Autocomplete API from google maps does not seem to function properly unless run using lite-server and then only on the add event page. 
+
 
 ### Resources
 
@@ -49,3 +51,5 @@ LocalStorage seems to need a refresh of the page to recognize new signups. Figur
 [Open Issue with pristine forms/reset in Angular2](https://github.com/angular/angular/issues/4933)
 
 [Integrating Gulp with Angular2](http://blog.scottlogic.com/2015/12/24/creating-an-angular-2-build.html)
+
+[Loading google maps api asynchronously](http://stackoverflow.com/questions/34931771/how-to-load-google-maps-api-asynchronously-in-angular2)
