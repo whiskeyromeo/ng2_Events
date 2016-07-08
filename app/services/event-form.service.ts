@@ -89,7 +89,7 @@ export class EventFormService {
 		Check/set the endTime
 	*/
 	checkEndTime(startValue) {
-		if(isNaN(startValue){
+		if(isNaN(startValue)){
 			this.eventForm.value.startTime = undefined;
 			console.log('invalid startValue');
 		}
@@ -104,11 +104,10 @@ export class EventFormService {
 		Ensure the endDate is later than the startDate
 	*/
 	checkEndDate(startValue) {
-		console.log('in checkEndDate')
 		if (!this.endDate || this.endDate < this.startDate) {
 			this.endDate = startValue;
 		}
-		//Must eventForm value must be set to validate.
+		//eventForm value must be set to validate.
 		this.eventForm.value.startDate = startValue;
 	}
 

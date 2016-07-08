@@ -1,4 +1,4 @@
-import { Component, ViewChild, Renderer, AfterViewInit } from '@angular/core';
+import { Component, ElementRef, ViewChild, Renderer, AfterViewInit } from '@angular/core';
 import { NgForm, FormBuilder, Validators, Control, ControlGroup} from '@angular/common';
 import { User } from '../user';
 import { AuthService } from '../services/auth.service';
@@ -16,6 +16,7 @@ import { ValidationService } from '../services/validation.service';
 export class SignupComponent implements AfterViewInit{ 
 	@ViewChild('name') input: ElementRef
 	userStore : UserStore;
+	userEmails: [];
 	formBuilder = FormBuilder;
 	active = true;
 	submitted = false;
@@ -28,6 +29,9 @@ export class SignupComponent implements AfterViewInit{
 		formBuilder: FormBuilder
 	) {
 
+		this.userStore = store
+		this.userEmails = this.userStore.getUserEmails();
+
 		this.signupForm = formBuilder.group({
 			name: ['', Validators.compose([Validators.required, Validators.minLength(3), ValidationService.checkString])],
 			email: ['', Validators.compose([Validators.required, ValidationService.validateEmail])],
@@ -37,9 +41,14 @@ export class SignupComponent implements AfterViewInit{
 			state: ['', Validators.compose([Validators.minLength(3), ValidationService.checkString])],
 			city: ['', Validators.compose([Validators.minLength(3), ValidationService.checkString])],
 			zip: ['',ValidationService.checkZip]
-		}, {validator: ValidationService.matchingPasswords('password', 'passwordConf')})
+		}, {
+			validator: Validators.compose(
+				[ValidationService.validateUnique('email', this.userEmails),
+				 ValidationService.matchingPasswords('password', 'passwordConf')]
+			)})
 
-		this.userStore = store
+		//console.log(this.signupForm);
+
 	
 	}
 
@@ -48,8 +57,7 @@ export class SignupComponent implements AfterViewInit{
 	}
 
 	signup() {
-		console.log('Form submitted!');
-		console.log(this.signupForm.value);
+		//console.log(this.signupForm.value);
 		console.log('creating user...');
 		this.userStore.addUser(
 			this.signupForm.value.name,

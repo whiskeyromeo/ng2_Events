@@ -53,11 +53,10 @@ export class LoginComponent implements AfterViewInit{
 			password: this.loginForm.value.password
 		};
 		
-		console.log(user)
 		if(!this._service.login(user)) {
 			this.errorMsg = 'Invalid username or password';
 		} else {
-			console.log('successful!')
+			console.log('Welcome Back!')
 		}
 	}
 

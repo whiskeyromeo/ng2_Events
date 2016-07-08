@@ -51,22 +51,4 @@
 			<button type="submit" [disabled]="!signupForm.valid" class="btn btn-default">Signup</button>
 		</form>
 	</div>
-	<div [hidden]="!submitted">
-	    <br>
-	    <button class="btn btn-default mobile-btn" (click)="submitted=false">Edit</button>
-	</div>
-	<div *ngIf="userStore.users.length > 0">
-		<div *ngFor="let user of userStore.users">
-			<h2>Name : {{user.name}}</h2>
-			<p>id: {{user.id}}</p>
-			<p>email: {{user.email}}</p>
-			<p>password: {{user.password}}</p>
-			<p *ngIf="user.occupation">occupation: {{user.occupation}}</p>
-			<p *ngIf="user.city">city: {{user.city}}</p>
-			<p *ngIf="user.state">state: {{user.state}}</p>
-			<p *ngIf="user.zip">zip : {{user.zip}}</p>
-			<button (click)="userStore.removeUser(user)">Remove {{user.name}}</button>
-		</div>
-		
-	</div>
 </div>

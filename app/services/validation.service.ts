@@ -1,11 +1,14 @@
 import { ControlGroup } from '@angular/common';
 import { DateService } from '../services/date.service';
+import { UserStore } from '../stores/user.store';
 
 export class ValidationService {
 
+
 	static getValidatorErrorMessage(code: string, quality: string) {
 		let config = {
-			'addressRequired' : 'Location is required.'
+			'non-uniqueEmail' : 'Email already associated with an existing account',
+			'addressRequired' : 'Location is required.',
 			'required' : `${quality} is Required`,
 			'minlength': `${quality} is too short.`,
 			'invalidEmail': `Invalid Email address.`,
@@ -49,10 +52,23 @@ export class ValidationService {
 		return null;
 	}
 
+	static validateUnique(emailKey: string, array: any) {
+		return (group : ControlGroup) => {
+			let email = group.controls[emailKey];
+			if(array.indexOf(email.value) > -1) {
+				return email.setErrors({
+					'non-uniqueEmail': true
+				})
+			}
+		}
+		//console.log(emailKey, array);
+
+	}
+
 	static validateEmail(control) {
 		if (control.value.match(/[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/)) {
 	      return null;
-	    } else {
+		} else {
 	        return { 'invalidEmail': true };
 	    }
 	}

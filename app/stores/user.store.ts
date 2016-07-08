@@ -47,6 +47,14 @@ export class UserStore {
 		this.updateUserStore();
 	}
 
+	getUserEmails() {
+		let userEmails = [];
+		for(let user of this.users) {
+			userEmails.push(user.email);
+		}
+		return userEmails;
+	}
+
 	/*
 		Delete a User's account
 	*/
