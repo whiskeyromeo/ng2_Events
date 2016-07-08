@@ -33,6 +33,10 @@ project using something like httpster or http-server.
 
 ### Notes
 
+The project sometimes has trouble finding main.js, I've found that a refresh fixes this. 
+
+The model structure for Users and Events is not ideal. Guests probably be stored in an array and checked against a database of users but really, its not something I'm worried about doing at the moment. 
+
 LocalStorage seems to need a refresh of the page to recognize new signups. Figured it wasn't worth correcting since actually storing information with plaintext passwords on the client side is about as bad as it gets...
 
 The Autocomplete API from google maps does not seem to function properly unless run using lite-server and then only on the add event page. 
