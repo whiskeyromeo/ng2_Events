@@ -33,6 +33,16 @@ export class AuthService {
 			this._router.navigate(['Login']);
 	}
 
+	/*
+		Prevent Logged in users from accessing certain sites
+	*/
+	serviceRedirect() {
+		//console.log('in service redirect');
+		if(this.isLoggedIn()) {
+			this._router.navigate(['Dashboard']);
+		}
+	}
+
 	isLoggedIn() {
 		var localUser = localStorage.getItem("loggedInUser");
 		if(localStorage.getItem("loggedInUser") === null){

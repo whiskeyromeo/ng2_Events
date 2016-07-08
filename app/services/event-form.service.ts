@@ -69,7 +69,7 @@ export class EventFormService {
 	}
 
 	updateAddress(event) {
-		console.log(event);
+		//console.log(event);
 		this.address = event;
 		this.eventForm.value.address = event;
 	}

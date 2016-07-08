@@ -47,6 +47,10 @@ export class UserStore {
 		this.updateUserStore();
 	}
 
+
+	/*
+		Return Array of all user emails currently stored.
+	*/
 	getUserEmails() {
 		let userEmails = [];
 		for(let user of this.users) {

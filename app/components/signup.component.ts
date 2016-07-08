@@ -23,11 +23,12 @@ export class SignupComponent implements AfterViewInit{
 	signupForm: any;
 
 	constructor(
-		private _service: AuthService,
+		private _AuthService: AuthService,
 		public renderer: Renderer,
 		store : UserStore,
 		formBuilder: FormBuilder
 	) {
+		this._AuthService.serviceRedirect();
 
 		this.userStore = store
 		this.userEmails = this.userStore.getUserEmails();
@@ -68,7 +69,7 @@ export class SignupComponent implements AfterViewInit{
 			this.signupForm.value.city,
 			this.signupForm.value.zip
 		)
-		this._service.checkCreds();
+		this._AuthService.checkCreds();
 	
 	}
 

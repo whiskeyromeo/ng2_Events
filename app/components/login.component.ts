@@ -1,4 +1,4 @@
-import { Component, ViewChild, Renderer, AfterViewInit } from '@angular/core';
+import { Component, ElementRef, ViewChild, Renderer, AfterViewInit } from '@angular/core';
 import { NgForm, FormBuilder, Validators, ControlGroup, Control } from '@angular/common';
 import { Router, ROUTER_PROVIDERS, ROUTER_DIRECTIVES } from '@angular/router-deprecated';
 import { ControlMessages } from '../control-messages';
@@ -25,11 +25,16 @@ export class LoginComponent implements AfterViewInit{
 	loginForm: any;
 
 
+
 	constructor(
-		private _service: AuthService,
+		private _AuthService: AuthService,
 		formBuilder: FormBuilder,
-		public renderer: Renderer
+		renderer: Renderer
 	) {
+
+		this._AuthService.serviceRedirect();
+		this.renderer = renderer;
+		
 		this.loginForm = formBuilder.group({
 			email: ['', Validators.compose([Validators.required, ValidationService.validateEmail])],
 			password: ['', Validators.required]
@@ -43,6 +48,10 @@ export class LoginComponent implements AfterViewInit{
 
 	}
 
+	ngOnInit() {
+		//this._AuthService.serviceRedirect();
+	}
+
 	ngAfterViewInit() {
 		this.renderer.invokeElementMethod(this.input.nativeElement, 'focus');
 	}
@@ -53,7 +62,7 @@ export class LoginComponent implements AfterViewInit{
 			password: this.loginForm.value.password
 		};
 		
-		if(!this._service.login(user)) {
+		if(!this._AuthService.login(user)) {
 			this.errorMsg = 'Invalid username or password';
 		} else {
 			console.log('Welcome Back!')

@@ -1,22 +1,32 @@
-## Event Planning 
+## Event Planner
 
-Still a number of problems popping up here and there, mainly due to a lack of documentation on some of the features I've been trying to implement . Finally was able to work around issues surrounding the use of ngFormControl and Date objects. Instead of trying to work with it further I bypassed using ngFormControl on the startTime property and am utilizing ngModel to capture instead. This is then passed to the constructor when a new Event is created. 
+Written 7.8.2016
 
-####TODO
+This was the result of me toying around with a bit of Angular2. The edges are all pretty rough
+and I make no claims as to having any serious front-end development skills, but all in all I think it gives a nice run around of using Angular2 with typescript. 
 
-Bring together the datepicker and timepicker templates to make it so that instead of having a startTime and startDate the two will be joined. Likewise to the endTime and endDate.
+Anyone that fires this off will quickly realize that there are still a lot little annoyances in dealing with Angular2 in its current release candidate status. The transition to rc-1 was actually made while I had this on the backburner and so there are a number of components integrated into this which will be deprecated in the not too distant future( RIP router-deprecated, formBuilder...).
+Compiling down to es5 also seems to throw a lot of tslint errors during the compile which I am hoping to find a way to stop here in the not too distant future.
 
-Integrate more Css functionality
-	- Create Cards To represent the created events
-	- Separate Event creation/viewing/updates to respective pages
-	- Tie in accounts to created events so that only those that
-	create the events can modify them
-	- Decorate the validations
-	- Update the landing page and navigation
+Happy Hacking.
 
-Integrate 0Auth functionality
 
-Input the validations for signup, login, and event creation
+### To Run:
+
+Clone the repository and perform a token
+```cd ng2_Events && npm install```
+
+From there you should be able to get up and running using 
+```
+npm start
+```
+This project was built on the angular2-quickstart skeleton, with a few modifications.
+
+Or you can use gulp to create a build folder. Run ```gulp```
+and ``` cd build ``` to get into the root where you can run the 
+project using something like httpster or http-server.
+*Note: use ```httpster -s ``` to allow for pushState.*
+
 
 
 ## Notes

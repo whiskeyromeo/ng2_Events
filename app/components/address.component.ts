@@ -32,14 +32,12 @@ export class AddressComponent implements OnInit{
 		
 		let autocomplete = new google.maps.places.Autocomplete(instance.input, options);
 		/*
-			TODO: Fix listener so that it works on event-edit.
-			Right now it works intermittently and only for certain 
-			inputs, such as 1. Perhaps something to do with having
-			multiple autocomplete inputs in a single application?
+			TODO: Fix listener so that it works on event-edit. Not functioning at all for now.
+			Also not functioning in build...
 		*/
 		//console.log('about to add listener');
 		let autoListener = google.maps.event.addListener(autocomplete, 'place_changed', () => {
-			console.log('adding listener')
+			//console.log('adding listener')
 			this.location = autocomplete.getPlace().formatted_address;
 			this.onChange.emit(this.location);
 			//this.lat = place.geometry.location.lat();
@@ -52,7 +50,7 @@ export class AddressComponent implements OnInit{
 
 	public setValue(a) {
 		this.location = a;
-		console.log(a);
+		//console.log(a);
 		this.onChange.emit(a);
 		this.cdr.detectChanges();
 	}
