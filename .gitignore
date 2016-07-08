@@ -8,7 +8,9 @@ link-checker-results.txt
 *.js.map
 _test-output
 _temp
-
+build/**
+dist/**
+build/systemjs.config.js
 
 !**/*e2e-spec.js
 !karma*.js

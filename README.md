@@ -41,6 +41,8 @@ LocalStorage seems to need a refresh of the page to recognize new signups. Figur
 
 The Autocomplete API from google maps does not seem to function properly unless run using lite-server and then only on the add event page. 
 
+When Compiling, often there are issues thrown up, [this link has a decent explanation( cannot find name 'Promise')](https://github.com/angular/angular/issues/7280).
+
 
 ### Resources
 
