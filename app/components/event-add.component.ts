@@ -73,6 +73,7 @@ export class AddEventComponent {
 
 		this.prepareDate = this._DateService.prepareDate;
 		this.getDate = this._DateService.getDate;
+		this.getMaxDate = this._DateService.getMaxDate;
 		
 		this.checkStartTime = this._EventFormService.checkStartTime;
 		this.checkEndTime = this._EventFormService.checkEndTime;
@@ -89,6 +90,7 @@ export class AddEventComponent {
 	*/
 	ngAfterViewInit() {
 		this.renderer.invokeElementMethod(this.input.nativeElement, 'focus');
+
 	}
 
 	// updateAddress(event) {

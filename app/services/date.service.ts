@@ -67,4 +67,21 @@ export class DateService{
 		return todayConv;
 	}
 
+	/*
+		Prepare a future date
+	*/
+	getMaxDate(today: Date = new Date()) {
+		var dd = today.getDate();
+		var mm = today.getMonth() + 1;
+		var yyyy = today.getFullYear() + 3;
+		if (dd < 10) {
+			dd = '0' + dd;
+		}
+		if (mm < 10) {
+			mm = '0' + mm;
+		}
+		let todayConv = yyyy + '-' + mm + '-' + dd;
+		return todayConv;
+	}
+
 }

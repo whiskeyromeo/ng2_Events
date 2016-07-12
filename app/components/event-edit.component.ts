@@ -46,6 +46,8 @@ export class EventEditComponent implements OnInit {
 	checkStartTime: any;
 	checkEndTime: any;
 	checkEndDate: any;
+	getMaxDate: any;
+	updateAddress: any;
 
 
 	/*
@@ -74,6 +76,7 @@ export class EventEditComponent implements OnInit {
 
 		this.prepareDate = this._DateService.prepareDate;
 		this.getDate = this._DateService.getDate;
+		this.getMaxDate = this._DateService.getMaxDate;
 
 		this.checkStartTime = this._EventFormService.checkStartTime;
 		this.checkEndTime = this._EventFormService.checkEndTime;

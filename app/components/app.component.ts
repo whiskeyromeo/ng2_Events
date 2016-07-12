@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS } from '@angular/router-deprecated';
 import { SignupComponent } from './signup.component';
 import { LoginComponent } from './login.component';
@@ -61,6 +61,15 @@ export class AppComponent {
 	
 	constructor(private _service: AuthService) {
 	}
+
+	// ngAfterViewInit() {
+	// 	let form = document.getElementsByTagName('form');
+	// 	for(let i = 0; i < form.length; i++) {
+	// 		form[i].addEventListener('invalid', function(e) {
+	// 			e.preventDefault();	
+	// 		}, true);
+	// 	}
+	// }
 
 	isLoggedIn() {
 		return this._service.isLoggedIn();

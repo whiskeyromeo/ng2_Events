@@ -17,10 +17,11 @@ export class ValidationService {
 				 Lowercase letter,
 				 Uppercase letter,
 				 Number.`,
-			'mismatchedPasswords': `Password and Confirm Password must match.`,
 			'invalidZip': `Zip must be 5 digits`,
 			'invalidString': `${quality} is not valid.`,
-			'invalidDate': `${quality} is not valid`
+			'invalidDate': `${quality} cannot be before the current date.`,
+			'mismatchedPasswords': `Password and Confirm Password must match.`,
+			'outOfDateRange': `${quality} must not be more than 3 years in the future.`
 		}
 		return config[code];
 	}
@@ -47,6 +48,9 @@ export class ValidationService {
 			let controlDate = new Date(strInputVal);
 			if (controlDate < thisDate) {
 				return { 'invalidDate': true }
+			}
+			if (controlDate.getFullYear() > thisDate.getFullYear() + 3) {
+				return { 'outOfDateRange': true }
 			}
 		}
 		return null;

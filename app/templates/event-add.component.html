@@ -32,39 +32,39 @@
 		<div class="form-group row">
 			<label for="startDate" class="col-sm-2 form-control-label">Start Date</label>
 			<div class="col-sm-4">
-				<input class="date" [(ngModel)]="startDate" type="date" min="{{getDate()}}" (ngModelChange)="checkEndDate($event)" [ngFormControl]="eventForm.controls['startDate']" class="form-control" required>
+				<input id="startDate" class="date" [(ngModel)]="startDate" type="date" min="{{getDate()}}" max="{{getMaxDate()}}" (ngModelChange)="checkEndDate($event)" [ngFormControl]="eventForm.controls['startDate']" class="form-control" required>
 				<control-messages control="startDate" type="Start Date"></control-messages>
 			</div>
 			<label for="endDate" class="col-sm-2 form-control-label">End Date</label>
 			<div class="col-sm-4">
-				<input class="date" type="date" class="form-control" [(ngModel)]="endDate" [ngFormControl]="eventForm.controls['endDate']" min="{{startDate}}" required>
+				<input id="endDate" class="date" type="date" class="form-control" [(ngModel)]="endDate" [ngFormControl]="eventForm.controls['endDate']" min="{{startDate}}" max="{{getMaxDate()}}" required>
 				<control-messages control="endDate" type="End Date"></control-messages>
 			</div>
 		</div>
 		<div class="form-group row">
-			<label for="eventTime" class="col-sm-2 form-control-label">Start Time</label>
+			<label for="startTime" class="col-sm-2 form-control-label">Start Time</label>
 			<div class="col-sm-4">
-				<timepicker [(ngModel)]="startTime" (ngModelChange)="checkEndTime($event)" [hourStep]="hstep" [minuteStep]="mstep" [showMeridian]="ismeridian"></timepicker>
+				<timepicker id="startTime" [(ngModel)]="startTime" (ngModelChange)="checkEndTime($event)" [hourStep]="hstep" [minuteStep]="mstep" [showMeridian]="ismeridian"></timepicker>
 			</div>
 			<label for="endTime" class="col-sm-2 form-control-label">End Time</label>
 			<div class="col-sm-4">
-				<timepicker [(ngModel)]="endTime" (ngModelChange)="checkStartTime($event)" [hourStep]="hstep" [minuteStep]="mstep" [showMeridian]="ismeridian"></timepicker>
+				<timepicker id="endTime" [(ngModel)]="endTime" (ngModelChange)="checkStartTime($event)" [hourStep]="hstep" [minuteStep]="mstep" [showMeridian]="ismeridian"></timepicker>
 				<control-messages control="endTime" type="End Time"></control-messages>
 			</div>
 		</div>
 		<div class="form-group row">
 			<label for="host" class="col-sm-2 form-control-label">Host</label>
 			<div class="col-sm-10">
-				<input name="fname" type="text" id="host" [ngFormControl]="eventForm.controls['host']" class="form-control" autocomplete="given-name" (click)="checkEvent()" required>
+				<input name="fname" type="text" id="host" [ngFormControl]="eventForm.controls['host']" class="form-control" autocomplete="given-name" required>
 				<control-messages control="host" type="Host"></control-messages>
 			</div>
 		</div>
 		<div class="form-group row">
-			<label for="eType" class="col-sm-2 form-control-label">
+			<label for="location" class="col-sm-2 form-control-label">
 				Location
 			</label>
 			<div name="location" class="col-sm-10">
-				<address [(location)]="address" [addressControl]="eventForm.controls['address']" (onChange)="updateAddress($event)" required></address>
+				<address id="location" [(location)]="address" [addressControl]="eventForm.controls['address']" (onChange)="updateAddress($event)" required></address>
 				<control-messages control="address" type="Address"></control-messages>
 			</div>
 		</div>

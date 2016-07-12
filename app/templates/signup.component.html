@@ -4,22 +4,22 @@
 		<form (ngSubmit)="signup()" [ngFormModel]="signupForm">
 			<div class="form-group">
 				<label for="name">Name</label>
-				<input type="text" required #name autofocus ngControl="name" class="form-control" placeholder="Your Name">
+				<input id="name" type="text" required #name autofocus ngControl="name" class="form-control" placeholder="Your Name">
 				<control-messages control="name" type="Name"></control-messages>
 			</div>
 			<div class="form-group">
 				<label for="email">Email</label>
-				<input type="email" required ngControl="email" class="form-control" placeholder="Your Email">
+				<input id="email" type="email" required ngControl="email" class="form-control" placeholder="Your Email">
 				<control-messages control="email" type="Email"></control-messages>
 			</div>
 			<div class="form-group">
 				<label for="password">Password</label>
-				<input type="password" required ngControl="password" class="form-control" placeholder="Your Password">
+				<input id="password" type="password" required ngControl="password" class="form-control" placeholder="Your Password">
 				<control-messages control="password" type="Password"></control-messages>
 			</div>
 			<div class="form-group">
 				<label for="passwordConf">Confirm Password</label>
-				<input type="password" required ngControl="passwordConf" class="form-control" placeholder="Confirm Password">
+				<input id="passwodConf" type="password" required ngControl="passwordConf" class="form-control" placeholder="Confirm Password">
 				<control-messages control="passwordConf" type="Password Confirmation"></control-messages>
 			</div>
 			<div class="form-group">
@@ -29,22 +29,22 @@
 			<div *ngIf="shown">
 				<div class="form-group">
 					<label for="occupation">Occupation</label>
-					<input type="text" ngControl="occupation" class="form-control" placeholder="Enter Occupation" >
+					<input id="occupation" type="text" ngControl="occupation" class="form-control" placeholder="Enter Occupation" >
 					<control-messages control="occupation" type="Occupation"></control-messages>
 				</div>
 				<div class="form-group">
 					<label for="city">City</label>
-					<input type="text" ngControl="city" class="form-control" placeholder="Enter City" >
+					<input id="city" type="text" ngControl="city" class="form-control" placeholder="Enter City" >
 					<control-messages control="city" type="City"></control-messages>
 				</div>
 				<div class="form-group">
 					<label for="state">State</label>
-					<input type="text" ngControl="state" class="form-control" placeholder="Enter State" >
+					<input id="state" type="text" ngControl="state" class="form-control" placeholder="Enter State" >
 					<control-messages control="state" type="State"></control-messages>
 				</div>
 				<div class="form-group">
-					<label for="state">Zip</label>
-					<input type="text" ngControl="zip" class="form-control" placeholder="Enter Zip" >
+					<label for="zip">Zip</label>
+					<input id="zip" type="text" ngControl="zip" class="form-control" placeholder="Enter Zip" >
 					<control-messages control="zip" type="Zip Code"></control-messages>
 				</div>
 			</div>
