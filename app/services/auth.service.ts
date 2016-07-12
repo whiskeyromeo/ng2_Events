@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 import { Router } from '@angular/router-deprecated';
 import { User } from '../user';
 import { UserStore } from '../stores/user.store';

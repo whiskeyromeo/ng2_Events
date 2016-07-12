@@ -1,5 +1,5 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
-import { RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS } from '@angular/router-deprecated';
+import { Component, OnInit, AfterViewInit, Inject } from '@angular/core';
+import { RouteConfig, ROUTER_DIRECTIVES } from '@angular/router-deprecated';
 import { SignupComponent } from './signup.component';
 import { LoginComponent } from './login.component';
 import { AddEventComponent } from './event-add.component';
@@ -13,9 +13,10 @@ import { AuthService } from '../services/auth.service';
 @Component({
 	selector: 'my-app',
 	templateUrl: 'app/templates/app.component.html',
-	styleUrls: ['static/css/app.component.css'],
+	styleUrls: ['static/css/min/app.component.css'],
 	directives: [ROUTER_DIRECTIVES],
-	providers: [ROUTER_PROVIDERS, AuthService]
+	providers: [AuthService],
+	precompile: [DashboardComponent, EventDetailComponent, EventEditComponent, HomeComponent, LoginComponent, SignupComponent, AddEventComponent]
 })
 
 @RouteConfig([
@@ -23,43 +24,50 @@ import { AuthService } from '../services/auth.service';
 		path: '/home',
 		name: 'Home',
 		component: HomeComponent,
-		useAsDefault: true
+		useAsDefault: true,
+		pathMatch: 'full'
 	},
 	{
 		path: '/signup',
 		name: 'Signup',
-		component: SignupComponent
+		component: SignupComponent,
+		pathMatch: 'full'
 	},
 	{
 		path: '/login',
 		name: 'Login',
-		component: LoginComponent
+		component: LoginComponent,
+		pathMatch: 'full'
 	},
 	{
 		path: '/add-event',
 		name: 'Todo',
-		component: AddEventComponent
+		component: AddEventComponent,
+		pathMatch: 'full'
 	},
 	{
 		path: '/dashboard',
 		name: 'Dashboard',
-		component: DashboardComponent
+		component: DashboardComponent,
+		pathMatch: 'full'
 	},
 	{
 		path: '/event/detail/:id',
 		name: 'EventDetail',
-		component: EventDetailComponent
+		component: EventDetailComponent,
+		pathMatch: 'full'
 	},
 	{
 		path: '/event/edit/:id',
 		name: 'EventEdit',
-		component: EventEditComponent
+		component: EventEditComponent,
+		pathMatch: 'full'
 	}
 ])
 
 export class AppComponent {
 	
-	constructor(private _service: AuthService) {
+	constructor(@Inject(AuthService) private _service: AuthService) {
 	}
 
 	// ngAfterViewInit() {

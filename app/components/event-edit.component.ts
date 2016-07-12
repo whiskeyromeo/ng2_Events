@@ -18,7 +18,7 @@ import { User } from '../user';
 @Component({
 	selector: 'EventEdit',
 	templateUrl: 'app/templates/event-edit.component.html',
-	styleUrls: ['static/css/event.component.css'],
+	styleUrls: ['static/css/min/event.component.css'],
 	directives: [TimepickerComponent, ControlMessages, AddressComponent],
 	providers: [EventFormService, DateService, EventService],
 	inputs: ['event']

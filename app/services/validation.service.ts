@@ -12,6 +12,7 @@ export class ValidationService {
 			'required' : `${quality} is Required`,
 			'minlength': `${quality} is too short.`,
 			'invalidEmail': `Invalid Email address.`,
+			'invalidEndDate': `Event cannot end before the given Start Date`,
 			'invalidPassword': `Password must be between 8 and 15 characters
 				 and include at least one of each of the following:
 				 Lowercase letter,
@@ -54,6 +55,19 @@ export class ValidationService {
 			}
 		}
 		return null;
+	}
+
+	static compareDates(startDateKey: string, endDateKey: string) {
+		return (group: ControlGroup) => {
+			let startDate = group.controls[startDateKey];
+			let endDate = group.controls[endDateKey];
+			if(endDate.value < startDate.value) {
+				return endDate.setErrors({
+					'invalidEndDate': true
+				})
+			}
+
+		}
 	}
 
 	static validateUnique(emailKey: string, array: any) {

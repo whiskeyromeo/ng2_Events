@@ -10,7 +10,7 @@ import * as moment from 'moment';
 @Component({
 	selector: 'Dashboard',
 	templateUrl: 'app/templates/dashboard.component.html',
-	styleUrls: ['static/css/dashboard.component.css'],
+	styleUrls: ['static/css/min/dashboard.component.css'],
 	directives: [ROUTER_DIRECTIVES],
 	providers: [AuthService, DateService]
 })

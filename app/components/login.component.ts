@@ -1,6 +1,6 @@
 import { Component, ElementRef, ViewChild, Renderer, AfterViewInit } from '@angular/core';
 import { NgForm, FormBuilder, Validators, ControlGroup, Control } from '@angular/common';
-import { Router, ROUTER_PROVIDERS, ROUTER_DIRECTIVES } from '@angular/router-deprecated';
+import { Router, ROUTER_DIRECTIVES } from '@angular/router-deprecated';
 import { ControlMessages } from '../control-messages';
 import { User } from '../user';
 import { UserStore } from '../stores/user.store'

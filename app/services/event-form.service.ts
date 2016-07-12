@@ -49,7 +49,7 @@ export class EventFormService {
 				'address': ['', Validators.required],
 				'guests': ['', Validators.required],
 				'host': [this.currentUser.name, Validators.compose([Validators.required, ValidationService.checkString])]
-			});
+			}, {validator: ValidationService.compareDates('startDate', 'endDate')});
 		} else {
 
 			this.eventForm = this.formBuilder.group({
@@ -63,7 +63,7 @@ export class EventFormService {
 				'address': [event.address, ValidationService.addressRequired],
 				'guests': [event.guests, Validators.required],
 				'host': [event.host, Validators.compose([ValidationService.checkString, Validators.required])]
-			});
+			}, {validator: ValidationService.compareDates('startDate', 'endDate')});
 		}
 		return this.eventForm;
 	}

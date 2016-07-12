@@ -18,7 +18,7 @@ import { AddressComponent } from './address.component';
 @Component({
 	selector: 'event-form',
 	templateUrl: 'app/templates/event-add.component.html',
-	styleUrls: ['static/css/event.component.css'],
+	styleUrls: ['static/css/min/event.component.css'],
 	directives: [TimepickerComponent, ControlMessages, AddressComponent],
 	providers: [EventFormService, DateService, EventService]
 })

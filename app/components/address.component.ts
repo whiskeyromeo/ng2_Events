@@ -3,7 +3,7 @@ import { Control } from '@angular/common';
 @Component({
 	selector: 'address',
 	templateUrl: 'app/templates/address.component.html',
-	styleUrls: ['static/css/address.component.css'],
+	styleUrls: ['static/css/min/address.component.css'],
 	providers: [],
 	directives: [],
 	inputs: ['address', 'addressControl']

@@ -10,7 +10,7 @@ import { RouteParams } from '@angular/router-deprecated';
 @Component({
 	selector: 'EventDetail',
 	templateUrl: 'app/templates/event-detail.component.html',
-	styleUrls: ['static/css/event-detail.component.css'],
+	styleUrls: ['static/css/min/event-detail.component.css'],
 	providers: [AuthService, EventService, DateService],
 	inputs:['event']
 })
