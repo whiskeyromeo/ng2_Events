@@ -23,11 +23,6 @@ npm start
 ```
 This project was built on the angular2-quickstart skeleton, with a few modifications.
 
-Or you can use gulp to create a build folder.
-
- Run ```gulp``` and ``` cd build ``` to get into the root where you can run the 
-project using something like httpster or http-server.
-
 *Note: use ```httpster -s ``` to allow for pushState.*
 
 
