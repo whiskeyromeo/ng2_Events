@@ -24,60 +24,53 @@ import { AuthService } from '../services/auth.service';
 		path: '/home',
 		name: 'Home',
 		component: HomeComponent,
-		useAsDefault: true,
-		pathMatch: 'full'
+		useAsDefault: true
 	},
 	{
 		path: '/signup',
 		name: 'Signup',
-		component: SignupComponent,
-		pathMatch: 'full'
+		component: SignupComponent
 	},
 	{
 		path: '/login',
 		name: 'Login',
-		component: LoginComponent,
-		pathMatch: 'full'
+		component: LoginComponent
 	},
 	{
 		path: '/add-event',
 		name: 'Todo',
-		component: AddEventComponent,
-		pathMatch: 'full'
+		component: AddEventComponent
 	},
 	{
 		path: '/dashboard',
 		name: 'Dashboard',
-		component: DashboardComponent,
-		pathMatch: 'full'
+		component: DashboardComponent
 	},
 	{
 		path: '/event/detail/:id',
 		name: 'EventDetail',
-		component: EventDetailComponent,
-		pathMatch: 'full'
+		component: EventDetailComponent
 	},
 	{
 		path: '/event/edit/:id',
 		name: 'EventEdit',
-		component: EventEditComponent,
-		pathMatch: 'full'
+		component: EventEditComponent
 	}
 ])
 
 export class AppComponent {
 	
-	constructor(@Inject(AuthService) private _service: AuthService) {
+	constructor(private _service: AuthService) {
 	}
 
-	// ngAfterViewInit() {
-	// 	let form = document.getElementsByTagName('form');
-	// 	for(let i = 0; i < form.length; i++) {
-	// 		form[i].addEventListener('invalid', function(e) {
-	// 			e.preventDefault();	
-	// 		}, true);
-	// 	}
-	// }
+	ngAfterViewInit() {
+		let form = document.getElementsByTagName('form');
+		for(let i = 0; i < form.length; i++) {
+			form[i].addEventListener('invalid', function(e) {
+				e.preventDefault();	
+			}, true);
+		}
+	}
 
 	isLoggedIn() {
 		return this._service.isLoggedIn();
