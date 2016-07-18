@@ -10,7 +10,7 @@ const sourcemaps = require('gulp-sourcemaps');
 const htmlreplace = require('gulp-html-replace');
 const cleanCSS = require('gulp-clean-css');
 const uglify = require('gulp-uglify');
-const concat = require('gulp-concat');
+//const concat = require('gulp-concat'); //<-- 7.17.16 - Fails with ng2-rc3.
 const gutil = require('gulp-util');
 const exec = require('child_process').exec;
 const browserSync = require('browser-sync').create();
@@ -39,7 +39,6 @@ gulp.task('compileDev', [], () => {
 		.pipe(sourcemaps.init())
 		.pipe(typescript(tsProject));
 	return tsResult.js
-		//.pipe(concat('dist/main.js'))
 		.pipe(uglify({mangle:false}).on('error', gutil.log))
 		.pipe(sourcemaps.write())
 		.pipe(gulp.dest('dist'));
