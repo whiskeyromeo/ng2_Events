@@ -59,7 +59,7 @@ export class DateService{
 	prepareDateTime(datetime: string) {
 		//console.log('replacing datetime issues: ', datetime.replace(/-/,'\/'))
 		datetime = datetime.split('-').join('/').replace('T', ' ');
-		console.log(datetime)
+		//console.log(datetime)
 		var newDate = new Date(datetime.replace(/-/g, '\/'));
 
 		return newDate;
@@ -67,7 +67,7 @@ export class DateService{
 
 	/* Prepare Datetime-local input value */
 	prepDateTimeInput(date: string) {
-		console.log(date);
+		//console.log(date);
 		date = date.substr(0,16);
 		return date;
 	}

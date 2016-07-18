@@ -44,7 +44,7 @@ gulp.task('compileDev', [], () => {
 		.pipe(gulp.dest('dist'));
 });
 
-gulp.task('lite-server', ['compileDev'], (cb) => {
+gulp.task('lite-server', ['compileDev', 'minifyCss'], (cb) => {
   exec('npm run lite', {maxBuffer: 1024 * 500}, (err, stdout, stderr) => {
     console.log(stdout);
     console.log(stderr);
@@ -147,7 +147,7 @@ gulp.task('build', ['compileBuild', 'clearIndex', 'moveHtml', 'minifyBuildCss'],
 	console.log('creating build...');
 });
 
-gulp.task('dev', ['minifyCss', 'watch', 'lite-server' ]);
+gulp.task('dev', ['watch', 'lite-server' ]);
 
 gulp.task('default', ['clean']);
 
