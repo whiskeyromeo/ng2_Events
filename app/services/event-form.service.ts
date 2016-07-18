@@ -8,7 +8,8 @@ import { DateService } from './date.service';
 @Injectable()
 export class EventFormService {
 	formBuilder: FormBuilder;
-	dateService: DateService
+	dateService: DateService;
+	prepDateTimeInput: any;
 	eventForm: ControlGroup;
 	startTime: any;
 	endTime: any;
@@ -26,6 +27,7 @@ export class EventFormService {
 		this.currentUser = JSON.parse(localStorage.getItem('loggedInUser'));
 		this.formBuilder = formBuilder;
 		this.dateService = DateService;
+		this.prepDateTimeInput = DateService.prepDateTimeInput;
 
 	}
 
@@ -44,22 +46,18 @@ export class EventFormService {
 				'eDesc': [''],
 				'startDate': ['', Validators.compose([Validators.required, ValidationService.checkDate])],
 				'endDate': ['', Validators.compose([Validators.required, ValidationService.checkDate])],
-				'startTime': [this.startTime, Validators.compose([ValidationService.checkTime, Validators.required])],
-				'endTime': [this.endTime, Validators.required],
 				'address': ['', Validators.required],
 				'guests': ['', Validators.required],
 				'host': [this.currentUser.name, Validators.compose([Validators.required, ValidationService.checkString])]
 			}, {validator: ValidationService.compareDates('startDate', 'endDate')});
 		} else {
-
+			//console.log('event endDate: ', event.endDate);
 			this.eventForm = this.formBuilder.group({
 				'newEvent': [event.title, Validators.required],
 				'eType': [event.type, Validators.required],
 				'eDesc': [event.description],
-				'startDate': [event.startDate, Validators.compose([Validators.required])],
-				'endDate': [event.endDate, Validators.required],
-				'startTime': [event.startDate, Validators.compose([Validators.required])],
-				'endTime': [event.endDate, Validators.required],
+				'startDate': [this.prepDateTimeInput(event.startDate), Validators.compose([Validators.required, ValidationService.checkDate])],
+				'endDate': [this.prepDateTimeInput(event.endDate), Validators.compose([Validators.required, ValidationService.checkDate])],
 				'address': [event.address, ValidationService.addressRequired],
 				'guests': [event.guests, Validators.required],
 				'host': [event.host, Validators.compose([ValidationService.checkString, Validators.required])]
@@ -77,33 +75,33 @@ export class EventFormService {
 	/*
 		Check/set the startTime
 	*/
-	checkStartTime(endValue) {
-		if (this.eventForm.value.startDate == this.eventForm.value.endDate) {
-			if (this.startTime > this.endTime) {
-				this.startTime = endValue;
-			}
+	checkStartTime(endValue: any) {
+		//console.log(this.eventForm.value.startDate);
+		if(this.eventForm.value.endDate > this.eventForm.value.startDate) {
+			console.log('endDate greater than startDate');
 		}
 	}
 
 	/*
 		Check/set the endTime
 	*/
-	checkEndTime(startValue) {
+	checkEndTime(startValue: any) {
 		if(isNaN(startValue)){
 			this.eventForm.value.startTime = undefined;
-			console.log('invalid startValue');
+			//console.log('invalid startValue');
 		}
 		if (this.eventForm.value.startDate == this.eventForm.value.endDate) {
-			if (this.startTime > this.endTime) {
-				this.endTime = startValue;
-			}
+			// if (this.startTime > this.endTime) {
+			// 	this.endTime = startValue;
+			// }
 		}
 	}
 
 	/* 
 		Ensure the endDate is later than the startDate
 	*/
-	checkEndDate(startValue) {
+	checkEndDate(startValue: any) {
+		console.log('endDate startValue', startValue)
 		if (!this.endDate || this.endDate < this.startDate) {
 			this.endDate = startValue;
 		}

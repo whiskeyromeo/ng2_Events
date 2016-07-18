@@ -12,7 +12,7 @@ export class ValidationService {
 			'required' : `${quality} is Required`,
 			'minlength': `${quality} is too short.`,
 			'invalidEmail': `Invalid Email address.`,
-			'invalidEndDate': `Event cannot end before the given Start Date`,
+			'invalidEndDate': `Event cannot end before it starts.`,
 			'invalidPassword': `Password must be between 8 and 15 characters
 				 and include at least one of each of the following:
 				 Lowercase letter,
@@ -43,14 +43,15 @@ export class ValidationService {
 			let strInputVal = control.value;
 			//Correct the Date bug in JS which causes datepicker 
 			//generated Date values to be off by one day.
-			strInputVal = strInputVal.split('-').join('/');
+			strInputVal = strInputVal.split('-').join('/').replace('T', ' ');
+			//console.log('strInputVal: ', strInputVal);
 			let thisDate = new Date();
-			thisDate.setHours(0, 0, 0, 0);
 			let controlDate = new Date(strInputVal);
-			if (controlDate < thisDate) {
+			//console.log('controlDate: ',controlDate, 'thisDate: ', thisDate);
+			if (controlDate < thisDate || controlDate == 'Invalid Date') {
 				return { 'invalidDate': true }
 			}
-			if (controlDate.getFullYear() > thisDate.getFullYear() + 3) {
+			if (controlDate.getFullYear() > thisDate.getFullYear() + 2) {
 				return { 'outOfDateRange': true }
 			}
 		}

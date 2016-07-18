@@ -2,7 +2,10 @@ const gulp =  require('gulp');
 const del = require('del');
 const typescript = require('gulp-typescript');
 const tscConfig = require('./tsconfig.json');
-const tsProject = typescript.createProject('tsconfig.json')
+const tsProject = typescript.createProject('tsconfig.json',{
+      typescript: require('typescript'),
+      outFile: 'dist/main.js'
+  })
 const sourcemaps = require('gulp-sourcemaps');
 const htmlreplace = require('gulp-html-replace');
 const cleanCSS = require('gulp-clean-css');
@@ -43,7 +46,7 @@ gulp.task('compileDev', [], () => {
 });
 
 gulp.task('lite-server', ['compileDev'], (cb) => {
-  exec('npm run lite', (err, stdout, stderr) => {
+  exec('npm run lite', {maxBuffer: 1024 * 500}, (err, stdout, stderr) => {
     console.log(stdout);
     console.log(stderr);
     cb(err);

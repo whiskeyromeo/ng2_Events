@@ -22,13 +22,14 @@
     <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="node_modules/ng2-bootstrap/bundles/ng2-bootstrap.js"></script>
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBuuBuEwXRt0RW6-su2mN7H3IDMfhO6l04&libraries=places"></script>
+    <script src="./dist/main.js"></script>
     
     <!-- endbuild -->
     <!-- inject:js -->
     <!-- endinject -->
     <script src="systemjs.config.js"></script>
     <script>
-      System.import('app').catch(function(err){ console.error(err); });
+      System.import('main').catch(function(err){ console.error(err); });
     </script>
   </head>
 

@@ -29,6 +29,8 @@ export class DateService{
 			result = true;
 		} else if (date2.getDate() > date.getDate()) {
 			result = true;
+		} else if (date2.getYear() > date.getYear()) {
+			result = true;
 		} else {
 			result = false;
 		}
@@ -50,20 +52,45 @@ export class DateService{
 		return newDate;
 	}
 
+
+	/*
+		Prepare a DateTime for submission
+	*/
+	prepareDateTime(datetime: string) {
+		//console.log('replacing datetime issues: ', datetime.replace(/-/,'\/'))
+		datetime = datetime.split('-').join('/').replace('T', ' ');
+		console.log(datetime)
+		var newDate = new Date(datetime.replace(/-/g, '\/'));
+
+		return newDate;
+	}
+
+	/* Prepare Datetime-local input value */
+	prepDateTimeInput(date: string) {
+		console.log(date);
+		date = date.substr(0,16);
+		return date;
+	}
+ 
 	/*
 		Prepare the date for the datepicker
 	*/
 	getDate(today: Date = new Date()) {
+		//console.log('Getting min start/end date');
 		var dd = today.getDate();
 		var mm = today.getMonth() + 1;
 		var yyyy = today.getFullYear();
+		var hr = today.getHours();
+		var min = today.getMinutes();
+
 		if (dd < 10) {
 			dd = '0' + dd;
 		}
 		if (mm < 10) {
 			mm = '0' + mm;
 		}
-		let todayConv = yyyy + '-' + mm + '-' + dd;
+		let todayConv = yyyy + '-' + mm + '-' + dd + 'T' + hr + ':' + min + ':00.0' ;
+		//console.log('todayConv', todayConv);
 		return todayConv;
 	}
 
@@ -73,14 +100,18 @@ export class DateService{
 	getMaxDate(today: Date = new Date()) {
 		var dd = today.getDate();
 		var mm = today.getMonth() + 1;
-		var yyyy = today.getFullYear() + 3;
+		var yyyy = today.getFullYear() + 2;
+		var hr = today.getHours();
+		var min = today.getMinutes();
+
 		if (dd < 10) {
 			dd = '0' + dd;
 		}
 		if (mm < 10) {
 			mm = '0' + mm;
 		}
-		let todayConv = yyyy + '-' + mm + '-' + dd;
+		let todayConv = yyyy + '-' + mm + '-' + dd + 'T' + hr + ':' + min + ':00.0' ;
+		//console.log('todayConv', todayConv);
 		return todayConv;
 	}
 

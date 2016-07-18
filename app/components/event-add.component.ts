@@ -44,6 +44,9 @@ export class AddEventComponent {
 	checkStartTime: any;
 	checkEndTime: any;
 	checkEndDate: any;
+	prepareDateTime: any;
+	getMaxDate: any;
+	updateAddress: any;
 
 
 	/*
@@ -72,6 +75,7 @@ export class AddEventComponent {
 		this.eventStore = store;
 
 		this.prepareDate = this._DateService.prepareDate;
+		this.prepareDateTime = this._DateService.prepareDateTime;
 		this.getDate = this._DateService.getDate;
 		this.getMaxDate = this._DateService.getMaxDate;
 		
@@ -107,10 +111,13 @@ export class AddEventComponent {
 	addEvent() {
 		if (this.eventForm.dirty && this.eventForm.valid) {
 			
-			let start = this.prepareDate(this.startDate, this.startTime);
-			let end = this.prepareDate(this.endDate, this.endTime);
-			console.log('address: ', this.address);
+			//let start = this.prepareDate(this.startDate, this.startTime);
+			//let end = this.prepareDate(this.endDate, this.endTime);
+			let start = this.prepareDateTime(this.startDate);
+			let end = this.prepareDateTime(this.endDate);
+			//console.log('address: ', this.address);
 			this.eventStore.addEvent(
+			//console.log(
 				this.eventForm.value.newEvent,
 				this.eventForm.value.eType,
 				start,
@@ -120,7 +127,9 @@ export class AddEventComponent {
 				this.eventForm.value.host,
 				this.address,
 				this.eventForm.value.guests
-			)
+			);
+
+			//console.log(this.eventStore.events);
 			
 			this._router.navigate(['Dashboard']);
 		}

@@ -42,6 +42,7 @@ export class EventEditComponent implements OnInit {
 	]
 
 	prepareDate: any;
+	prepareDateTime: any;
 	getDate: any;
 	checkStartTime: any;
 	checkEndTime: any;
@@ -75,6 +76,7 @@ export class EventEditComponent implements OnInit {
 		this.eventStore = store;
 
 		this.prepareDate = this._DateService.prepareDate;
+		this.prepareDateTime = this._DateService.prepareDateTime;
 		this.getDate = this._DateService.getDate;
 		this.getMaxDate = this._DateService.getMaxDate;
 
@@ -93,11 +95,9 @@ export class EventEditComponent implements OnInit {
 		if(this.event.address){
 			this.address = this.event.address;
 		}
-		this.startTime = new Date(this.event.startDate);
-		this.endTime = new Date(this.event.endDate);
-		this.startDate = this._DateService.getDate(this.startTime);
-		this.endDate = this._DateService.getDate(this.endTime);
 
+		//this.startDate = this.eventForm.value.startDate;
+		//this.endDate = this.eventForm.value.endDate;
 
 	}
 
@@ -116,8 +116,10 @@ export class EventEditComponent implements OnInit {
 	updateEvent() {
 		if (this.eventForm.valid) {
 
-			let start = this.prepareDate(this.startDate, this.startTime);
-			let end = this.prepareDate(this.endDate, this.endTime);
+			//let start = this.prepareDate(this.eventForm.value.startDate, this.startTime);
+			//let end = this.prepareDate(this.endDate, this.endTime);
+			let start = this.prepareDateTime(this.eventForm.value.startDate);
+			let end = this.prepareDateTime(this.eventForm.value.endDate);
 
 			var editedEvent = new Event(
 				this.event.id,

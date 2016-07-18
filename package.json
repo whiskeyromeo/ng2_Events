@@ -4,6 +4,7 @@
   "description": "Event planner for angular2",
   "scripts": {
     "start": "gulp dev",
+    "startdev": "tsc && concurrently \"tsc -w\" \"lite-server\" ",
     "lite": "lite-server",
     "postinstall": "typings install",
     "tsc": "tsc",

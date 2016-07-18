@@ -38,6 +38,8 @@ The Autocomplete API from google maps does not seem to function properly unless 
 
 When Compiling, often there are issues thrown up, [this link has a decent explanation( cannot find name 'Promise')](https://github.com/angular/angular/issues/7280).
 
+The current development configuration uses lite-server and child_process.exec to update the application. This is not optimal for a number of reasons including a tendency to excede the max buffer size within a fairly short period of time. Switching to gulp-server or something of the like is currently on the list of todos...
+
 
 ### Resources
 
