@@ -95,6 +95,7 @@ gulp.task('minifyCss', ['clean'], () => {
 gulp.task('concatCss', ['clean'], () => {
 	return gulp.src(['static/css/forms.css', 'static/css/styles.css'])
 			.pipe(concat('styles.css'))
+			.pipe(cleanCSS())
 			.pipe(gulp.dest('static/css/min/'));
 });
 
