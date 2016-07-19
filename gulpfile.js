@@ -10,7 +10,7 @@ const sourcemaps = require('gulp-sourcemaps');
 const htmlreplace = require('gulp-html-replace');
 const cleanCSS = require('gulp-clean-css');
 const uglify = require('gulp-uglify');
-//const concat = require('gulp-concat'); //<-- 7.17.16 - Fails with ng2-rc3.
+const concat = require('gulp-concat'); //<-- 7.17.16 - Fails with ng2-rc3.
 const gutil = require('gulp-util');
 const exec = require('child_process').exec;
 const browserSync = require('browser-sync').create();
@@ -44,7 +44,7 @@ gulp.task('compileDev', [], () => {
 		.pipe(gulp.dest('dist'));
 });
 
-gulp.task('lite-server', ['compileDev', 'minifyCss'], (cb) => {
+gulp.task('lite-server', ['compileDev', 'minifyCss', 'concatCss'], (cb) => {
   exec('npm run lite', {maxBuffer: 1024 * 500}, (err, stdout, stderr) => {
     console.log(stdout);
     console.log(stderr);
@@ -77,7 +77,7 @@ gulp.task('minifyJS', [], () => {
 });
 
 gulp.task('minifyBuildCss', [], () => {
-	return gulp.src("static/css/*")
+	return gulp.src(["static/css/*",'!static/css/styles.css', '!static/css/forms.css'])
 		.pipe(sourcemaps.init())
 		.pipe(cleanCSS())
 		.pipe(sourcemaps.write())
@@ -85,13 +85,18 @@ gulp.task('minifyBuildCss', [], () => {
 });
 
 gulp.task('minifyCss', ['clean'], () => {
-	return gulp.src("static/css/*")
+	return gulp.src(["static/css/*",'!static/css/styles.css', '!static/css/forms.css'])
 		.pipe(sourcemaps.init())
 		.pipe(cleanCSS())
 		.pipe(sourcemaps.write())
 		.pipe(gulp.dest('static/css/min'))
 });
 
+gulp.task('concatCss', ['clean'], () => {
+	return gulp.src(['static/css/forms.css', 'static/css/styles.css'])
+			.pipe(concat('styles.css'))
+			.pipe(gulp.dest('static/css/min/'));
+});
 
 
 gulp.task('moveResources', ['clean'], () => {
