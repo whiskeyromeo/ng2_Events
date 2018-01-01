@@ -2,8 +2,7 @@
 
 Written 7.8.2016
 
-This was the result of me toying around with a bit of Angular2. The edges are all pretty rough
-and I make no claims as to having any serious front-end development skills, but all in all I think it gives a nice run around of using Angular2 with typescript. 
+This was the result of me toying around with a bit of Angular2. The edges are all pretty rough but all in all I think it gives a nice run around of using Angular2 with typescript. 
 
 Anyone that fires this off will quickly realize that there are still a lot little annoyances in dealing with Angular2 in its current release candidate status. The transition to rc-1 was actually made while I had this on the backburner and so there are a number of components integrated into this which will be deprecated in the not too distant future( RIP router-deprecated, formBuilder...).
 
