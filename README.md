@@ -1,5 +1,8 @@
 ## Angular2 Event Planner
 
+*NOTE: This was built using Angular2 when it was still in an unstable state*
+Since I originally built this, many other versions of Angular have been released which are much better to work with. 
+
 Written 7.8.2016
 
 This was the result of me toying around with a bit of Angular2. The edges are all pretty rough but all in all I think it gives a nice run around of using Angular2 with typescript. 
