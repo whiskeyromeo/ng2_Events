@@ -1,7 +1,6 @@
 ## Angular2 Event Planner
 
-*NOTE: This was built using Angular2 when it was still in an unstable state*
-Since I originally built this, many other versions of Angular have been released which are much better to work with. 
+**NOTE: This was built using Angular2 when it was still in an unstable statemany other versions of Angular have been released which are much better to work with, see my other repository [ng5-simple-auth](https://github.com/whiskeyromeo/ng5_simple_auth) for an example.**
 
 Written 7.8.2016
 
