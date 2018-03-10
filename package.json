@@ -29,7 +29,7 @@
     "bootstrap": "^3.3.6",
     "es6-promise": "^3.2.1",
     "es6-shim": "^0.35.0",
-    "jquery": "^2.2.3",
+    "jquery": "^3.0.0",
     "lite-server": "^2.2.0",
     "moment": "^2.13.0",
     "ng2-bootstrap": "1.0.17",
